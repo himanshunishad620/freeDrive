@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useReadDirectoryQuery } from "../../api/directoryApi";
 
 export default function Directory() {
   const { _id } = useParams();
   const navigate = useNavigate();
-
   const numericId = parseInt(_id); // Ensure it's a number
-
+  const { data, isLoading } = useReadDirectoryQuery(_id);
+  if (isLoading) return <h1>Loading....</h1>;
+  console.log(data);
   return (
     <div>
       <h2>Current Directory ID: {_id}</h2>
-
+      <h4>{JSON.stringify(data)}</h4>
       <div style={{ marginTop: "1rem" }}>
         {/* History navigation */}
         <button onClick={() => navigate(1)}>Forward</button>
