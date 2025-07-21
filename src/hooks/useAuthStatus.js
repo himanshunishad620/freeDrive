@@ -9,16 +9,14 @@ export default function useAuthStatus() {
       setLoading(true);
       console.log("handleVerify");
       try {
-        const res = await axios.get(
+        await axios.get(
           "https://resumakebackend.onrender.com/api/auth/verifyToken",
           {
             withCredentials: true, // 👈 send and receive cookies
           },
         );
         setIsAuthenticated(true);
-        console.log(res);
       } catch (error) {
-        console.log(error);
         setIsAuthenticated(false);
       } finally {
         setLoading(false);

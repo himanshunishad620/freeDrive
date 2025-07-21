@@ -11,7 +11,7 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await Login({
-        email: "himanshunishad1@gmail.com",
+        email: "himanshunishad6@gmail.com",
         password: "Himan@6405",
       }).unwrap();
       console.log(res);

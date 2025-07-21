@@ -1,12 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/home/Home";
-import Contact from "../pages/home/Contact";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 import useAuthStatus from "../hooks/useAuthStatus";
-import About from "../pages/home/About";
+import LandingPage from "../pages/home/LandingPage";
+import DasboardLayout from "../components/layout/DasboardLayout";
+import Storage from "../components/dashboard/Storage";
+import Setting from "../components/dashboard/Setting";
+import About from "../components/dashboard/About";
+import Contact from "../components/dashboard/Contact";
+import Directory from "../components/dashboard/Directory";
 
 export default function AppRoutes() {
   const { isAuthenticated, loading } = useAuthStatus();
@@ -17,9 +21,14 @@ export default function AppRoutes() {
         path="/"
         element={<ProtectedRoute isAuthenticated={isAuthenticated} />}
       >
-        <Route index element={<Home />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="about" element={<About />} />
+        <Route index element={<LandingPage />} />
+        <Route path="dashboard" element={<DasboardLayout />}>
+          <Route index element={<Storage />} />
+          <Route path="rootDirectory/:_id" element={<Directory />} />
+          <Route path="settings" element={<Setting />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
       </Route>
       <Route
         path="auth"
