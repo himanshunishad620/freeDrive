@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -8,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const verifyAuth = async () => {
+  const verifyAuth = useCallback(async () => {
     setLoading(true);
     try {
       await axios.get(
@@ -23,16 +29,14 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     verifyAuth(); // Run once on mount
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, user, verifyAuth, loading }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, verifyAuth, loading }}>
       {children}
     </AuthContext.Provider>
   );

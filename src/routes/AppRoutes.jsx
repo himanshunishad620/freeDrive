@@ -11,9 +11,10 @@ import Setting from "../components/dashboard/Setting";
 import About from "../components/dashboard/About";
 import Contact from "../components/dashboard/Contact";
 import Directory from "../components/dashboard/Directory";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function AppRoutes() {
-  const { isAuthenticated, loading } = useAuthStatus();
+  const { isAuthenticated, loading } = useAuth();
   if (loading) return <h1>Loading....</h1>;
   return (
     <Routes>
