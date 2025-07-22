@@ -1,28 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 
 export default function Input({
   value,
-  handleChange,
+  onChange,
   type,
   placeholder,
   name,
   icon,
   required,
 }) {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="relative w-80">
       <div className="absolute top-[50%] left-3 translate-y-[-50%] transform text-xl">
         {icon}
       </div>
       <input
-        className="h-10 w-full rounded-md border-2 pr-5 pl-10 font-semibold"
-        type={type}
+        className={`h-10 w-full rounded-md border-2 font-semibold ${type === "password" ? "pr-10" : "pr-5"} font-semibold" pl-10`}
+        type={showPassword ? "text" : type}
         placeholder={placeholder}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         name={name}
         required={required}
       />
+      {type === "password" ? (
+        <div
+          onClick={() => setShowPassword((pre) => !pre)}
+          className="absolute top-[50%] right-3 translate-y-[-50%] transform cursor-pointer text-xl"
+        >
+          {!showPassword ? <BiSolidShow /> : <BiSolidHide />}
+        </div>
+      ) : null}
     </div>
   );
 }
