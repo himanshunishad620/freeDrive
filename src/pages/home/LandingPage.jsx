@@ -5,8 +5,8 @@ export default function LandingPage() {
   const navigate = useNavigate();
   return (
     <div>
-      LandingPage
-      <button onClick={() => navigate("/dashboard")}>Dashboard</button>
+      <p className="text-center text-5xl">Welcome to Dashboard</p>
+      {/* <button onClick={() => navigate("/dashboard")}>Dashboard</button> */}
     </div>
   );
 }

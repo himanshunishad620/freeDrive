@@ -39,27 +39,5 @@ export default function AppRoutes() {
         <Route path="register" element={<Register />} />
       </Route>
     </Routes>
-    // <Routes>
-    //   <Route
-    //     path="/"
-    //     element={<ProtectedRoute isAuthenticated={isAuthenticated} />}
-    //   >
-    //     {/* <Route index element={<LandingPage />} /> */}
-    //     <Route index element={<DasboardLayout />} />
-    //     <Route path="storage" element={<Storage />} />
-    //     <Route path="rootDirectory/:_id" element={<Directory />} />
-    //     <Route path="settings" element={<Setting />} />
-    //     <Route path="about" element={<About />} />
-    //     <Route path="contact" element={<Contact />} />
-    //   </Route>
-    //   {/* </Route> */}
-    //   <Route
-    //     path="auth"
-    //     element={<PublicRoute isAuthenticated={isAuthenticated} />}
-    //   >
-    //     <Route index element={<Login />} />
-    //     <Route path="register" element={<Register />} />
-    //   </Route>
-    // </Routes>
   );
 }
