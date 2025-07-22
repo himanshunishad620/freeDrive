@@ -44,6 +44,7 @@ export default function Register() {
       navigate("/auth");
     } else toast.error(res.error.data.msg);
   };
+
   return (
     <div className="flex h-screen w-full">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3">

@@ -15,7 +15,12 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function AppRoutes() {
   const { isAuthenticated, loading } = useAuth();
-  if (loading) return <h1 className="text-center text-3xl">Loading....</h1>;
+  if (loading)
+    return (
+      <h1 className="text-center text-3xl">
+        Loading....,Server restarting, it might take few seconds for once.
+      </h1>
+    );
   return (
     <Routes>
       <Route
