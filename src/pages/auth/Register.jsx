@@ -4,7 +4,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Button from "../../components/UI/Button";
 import OtpInput from "../../components/UI/OtpInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useHandleForm from "../../hooks/useHandleForm";
 import { useRegisterMutation, useSendOtpMutation } from "../../api/authApi";
 import { emailRegex } from "../../constant/Regex";
@@ -13,6 +13,7 @@ export default function Register() {
   const [otp, setOtp] = useState("");
   const [sendOtp, { isLoading: otpLoader }] = useSendOtpMutation();
   const [register, { isLoading: registerLoader }] = useRegisterMutation();
+  const navigate = useNavigate();
   const { value, handleChange, resetForm } = useHandleForm({
     // email: "kbnwdfmvebqslhwqqt@nesopf.com",
     email: "", //"biwibi3787@dariolo.com",
@@ -21,33 +22,35 @@ export default function Register() {
   });
   const handleOtpChange = (value) => {
     setOtp(value);
-    console.log("OTP:", value);
+    // console.log("OTP:", value);
   };
   const generateOtp = async () => {
     if (!emailRegex.test(value.email))
       return console.log("Please Enter valid email!");
     const res = await sendOtp({ email: value.email });
-    if (res.data.msg) toast.success(res.data.msg);
+    console.log(res);
+    // if (!res.ok) console.log(res);
+    if (res?.data?.msg) toast.success(res.data.msg);
     else toast.error(res.error.data.msg);
     // alert(res?.data?.msg || res?.error?.data?.msg);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (value.password !== value.confirmPassword) {
-      resetForm();
+    if (value.password !== value.confirmPassword)
       return toast.error("Password does not matched!");
-    }
     const res = await register({ ...value, otp });
-    if (res.data.msg) toast.success(res.data.msg);
-    else toast.error(res.error.data.msg);
+    if (res?.data?.msg) {
+      toast.success(res.data.msg);
+      navigate("/auth");
+    } else toast.error(res.error.data.msg);
   };
   return (
     <div className="flex h-screen w-full">
       <div className="flex h-full w-full flex-col items-center justify-center gap-3">
         <h1 className="text-4xl font-bold text-blue-500">Sign Up</h1>
         <p className="mb-5 text-center text-[14px] leading-4 text-gray-400">
-          Sign up now to start uploading and securely <br />
-          storing your files for free!
+          Sign up now to start uploading
+          <br /> and securely storing your files for free!
         </p>
         <form onSubmit={handleSubmit} className="flex w-80 flex-col gap-3">
           <Input

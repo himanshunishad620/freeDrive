@@ -26,7 +26,8 @@ export default function Login() {
       const res = await Login(value).unwrap();
       // console.log(res.msg);
       toast.success(res.msg);
-      setTimeout(() => navigate(0), [1000]);
+      navigate(0);
+      // setTimeout(() => navigate(0), [1000]);
     } catch (error) {
       toast.error(error.data.msg);
       // console.log(error.data.msg);
