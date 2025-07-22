@@ -24,7 +24,7 @@ export default function Input({
         onChange={onChange}
         name={name}
         required={required}
-        patter={
+        pattern={
           type === "password"
             ? "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
             : null
