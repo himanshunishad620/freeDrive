@@ -30,7 +30,7 @@ export default function LandingPage() {
         <Button label={"Logout"} onClick={handleLogout} isLoading={isLoading} />
       </div>
 
-      {/* <button onClick={() => navigate("/dashboard")}>Dashboard</button> */}
+      <button onClick={() => navigate("/dashboard")}>Dashboard</button>
     </div>
   );
 }

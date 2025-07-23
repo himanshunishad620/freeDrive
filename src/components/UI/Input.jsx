@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 
 export default function Input({
+  pattern,
   value,
   onChange,
   type,
@@ -24,6 +25,7 @@ export default function Input({
         onChange={onChange}
         name={name}
         required={required}
+        pattern={pattern}
       />
       {type === "password" ? (
         <div

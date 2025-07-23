@@ -77,6 +77,7 @@ export default function Register() {
             onChange={handleChange}
             required={true}
             value={value.password}
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
           />
           <Input
             icon={<RiLockPasswordLine />}

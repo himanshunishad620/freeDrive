@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ProtectedRoute from "./ProtectedRoute";
@@ -14,7 +14,7 @@ import Directory from "../components/dashboard/Directory";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function AppRoutes() {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, _id } = useAuth();
   if (loading)
     return (
       <h1 className="text-center text-3xl">
@@ -29,8 +29,12 @@ export default function AppRoutes() {
       >
         <Route index element={<LandingPage />} />
         <Route path="dashboard" element={<DasboardLayout />}>
-          <Route index element={<Storage />} />
-          <Route path="rootDirectory/:_id" element={<Directory />} />
+          <Route
+            index
+            element={<Navigate to={"rootDirectory"} state={{ _id }} replace />}
+          />
+          <Route path="storage" element={<Storage />} />
+          <Route path="rootDirectory" element={<Directory />} />
           <Route path="settings" element={<Setting />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />

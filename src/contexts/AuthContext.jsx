@@ -10,22 +10,25 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null); // null means loading
-  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // null means loading
+  const [_id, set_Id] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const verifyAuth = useCallback(async () => {
     setLoading(true);
     try {
-      await axios.get(
+      const res = await axios.get(
         "https://resumakebackend.onrender.com/api/auth/verifyToken",
         { withCredentials: true },
       );
+      // console.log(res.data);
       setIsAuthenticated(true);
-      //       setUser(res.data.user);
+      set_Id(res.data._id);
+      // setUser(res.data.user);
     } catch (err) {
       setIsAuthenticated(false);
       //       setUser(null);
+      set_Id(null);
     } finally {
       setLoading(false);
     }
@@ -34,9 +37,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     verifyAuth(); // Run once on mount
   }, []);
-
+  // console.log(_id);
   return (
-    <AuthContext.Provider value={{ isAuthenticated, verifyAuth, loading }}>
+    <AuthContext.Provider value={{ isAuthenticated, verifyAuth, loading, _id }}>
       {children}
     </AuthContext.Provider>
   );

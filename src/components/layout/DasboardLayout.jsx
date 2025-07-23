@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 export default function DasboardLayout() {
   return (
-    <div>
-      <h1 className="text-3xl">Dashboard</h1>
-      <Outlet />
+    <div className="flex h-screen w-full">
+      <Sidebar />
+      <div className="h-full w-3/4 bg-red-100">
+        <Outlet />
+      </div>
     </div>
   );
 }

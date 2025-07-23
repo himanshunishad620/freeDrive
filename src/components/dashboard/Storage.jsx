@@ -61,14 +61,14 @@ function Storage() {
   const navigate = useNavigate();
   return (
     <div className="p-4">
-      <input type="file" onChange={handleFileChange} />
+      {/* <input type="file" onChange={handleFileChange} />
       <button
         onClick={handleUpload}
         className="ml-2 rounded bg-blue-600 px-4 py-1 text-white"
       >
         {loading ? "Loading..." : " Upload to Telegram"}
       </button>
-      <button onClick={() => navigate("rootDirectory/1")}>Directory</button>
+      <button onClick={() => navigate("rootDirectory/1")}>Directory</button> */}
       {/* <a
         href={
           "https://scripts.vaultifier.space/rapidapi/telegram/downloads/file_4307.pdf"
@@ -78,12 +78,13 @@ function Storage() {
       >
         Download
       </a> */}
-      <DownloadButton
+      {/* <DownloadButton
         fileUrl={
           "https://scripts.vaultifier.space/rapidapi/telegram/downloads/file_4307.pdf"
         }
         // fileName={"FileForDownload.pdf"}
-      />
+      /> */}
+      storage
     </div>
   );
 }
