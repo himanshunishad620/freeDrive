@@ -10,8 +10,9 @@ import Storage from "../components/dashboard/Storage";
 import Setting from "../components/dashboard/Setting";
 import About from "../components/dashboard/About";
 import Contact from "../components/dashboard/Contact";
-import Directory from "../components/dashboard/Directory";
+// import Directory from "../components/dashboard/Directory";
 import { useAuth } from "../contexts/AuthContext";
+import FileManager from "../components/dashboard/FileManager";
 
 export default function AppRoutes() {
   const { isAuthenticated, loading, _id } = useAuth();
@@ -31,10 +32,10 @@ export default function AppRoutes() {
         <Route path="dashboard" element={<DasboardLayout />}>
           <Route
             index
-            element={<Navigate to={"rootDirectory"} state={{ _id }} replace />}
+            element={<Navigate to={"fileManager"} state={{ _id }} replace />}
           />
           <Route path="storage" element={<Storage />} />
-          <Route path="rootDirectory" element={<Directory />} />
+          <Route path="fileManager" element={<FileManager />} />
           <Route path="settings" element={<Setting />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
