@@ -14,7 +14,7 @@ export default function Folder({ folder }) {
     clickTimeout.current = setTimeout(() => {
       setDisabled(false);
       select({ _id: folder._id, type: "folder" });
-    }, 300);
+    }, 200);
   };
   // const handleClick = () => {
   //   setTimeout(() => {
