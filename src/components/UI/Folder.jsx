@@ -14,7 +14,7 @@ export default function Folder({ folder }) {
     clickTimeout.current = setTimeout(() => {
       setDisabled(false);
       select({ _id: folder._id, type: "folder" });
-    }, 200);
+    }, 300);
   };
   // const handleClick = () => {
   //   setTimeout(() => {
@@ -40,7 +40,7 @@ export default function Folder({ folder }) {
       onClick={handleClick}
     >
       <IoFolderOpen className="text-5xl text-[#8bc3ff] md:text-7xl" />
-      <p className="text-center text-[12px] font-medium text-[#5b5b5b]">
+      <p className="text-center text-[10px] font-medium text-[#5b5b5b] md:text-[12px]">
         {folder.folderName}
       </p>
     </div>
