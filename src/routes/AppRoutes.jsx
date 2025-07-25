@@ -34,9 +34,9 @@ export default function AppRoutes() {
             index
             element={<Navigate to={"fileManager"} state={{ _id }} replace />}
           />
-          <Route path="storage" element={<Storage />} />
+          {/* <Route path="storage" element={<Storage />} /> */}
           <Route path="fileManager" element={<FileManager />} />
-          <Route path="settings" element={<Setting />} />
+          {/* <Route path="settings" element={<Setting />} /> */}
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>

@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     verifyAuth(); // Run once on mount
   }, []);
-  // console.log(_id);
   return (
     <AuthContext.Provider value={{ isAuthenticated, verifyAuth, loading, _id }}>
       {children}

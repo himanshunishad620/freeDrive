@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./Input";
+
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaArrowLeft } from "react-icons/fa6";
 import {
@@ -26,10 +27,10 @@ export default function FileControls() {
   // console.log(visitedFolders);
   return (
     <div className="sticky top-0 left-0 flex w-full items-center justify-between bg-white p-2 shadow-md">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-0 pr-3 md:gap-2 md:pr-0">
         <IconButton
           icon={<FaArrowLeft />}
-          disabled={visitedFolders.length < 2}
+          // disabled={visitedFolders.length < 2}
           onClick={() => {
             select("");
             setDisabled(true);
@@ -50,9 +51,6 @@ export default function FileControls() {
         />
         <IconButton icon={<RiFileAddLine />} toolTip={"Add file"} />
         <IconButton icon={<RiFolderAddLine />} toolTip={"Add folder"} />
-        {visitedFolders?.map((i, ind) => (
-          <p key={i}>{i}</p>
-        ))}
       </div>
       <Input
         type="text"

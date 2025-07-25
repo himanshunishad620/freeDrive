@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { IoFolderOpen } from "react-icons/io5";
+import { IoFolderOpen, IoFolderSharp } from "react-icons/io5";
+
 import { useNavigate } from "react-router-dom";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 
@@ -38,7 +39,7 @@ export default function Folder({ folder }) {
       key={folder._id}
       onClick={handleClick}
     >
-      <IoFolderOpen className="text-7xl text-[#8bc3ff]" />
+      <IoFolderOpen className="text-5xl text-[#8bc3ff] md:text-7xl" />
       <p className="text-center text-[12px] font-medium text-[#5b5b5b]">
         {folder.folderName}
       </p>

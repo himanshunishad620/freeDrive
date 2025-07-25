@@ -3,22 +3,17 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   return (
-    <div className="h-full w-1/4 bg-amber-100">
-      <nav className="flex flex-col items-center">
+    <div className="fixed bottom-0 left-0 z-10 h-15 w-full bg-amber-100 md:static md:block md:h-full md:w-1/4">
+      <nav className="flex flex-row items-center justify-evenly md:flex-col">
         <NavLink className="m-3" to="../dashboard">
-          Root Directory
+          File Manager
         </NavLink>
-        <NavLink className="m-3" to="storage">
-          Storage
-        </NavLink>
+
         <NavLink className="m-3" to="about">
           About
         </NavLink>
         <NavLink className="m-3" to="contact">
           Contact
-        </NavLink>
-        <NavLink className="m-3" to="settings">
-          Setting
         </NavLink>
       </nav>
     </div>
