@@ -15,7 +15,7 @@ import IconButton from "./IconButton";
 import { useNavigate } from "react-router-dom";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 
-export default function FileControls() {
+export default function FileControls({ handleAddFileToggle }) {
   const navigate = useNavigate();
   const {
     visitedFolders,
@@ -49,7 +49,11 @@ export default function FileControls() {
           icon={<BiRename />}
           toolTip={"Rename"}
         />
-        <IconButton icon={<RiFileAddLine />} toolTip={"Add file"} />
+        <IconButton
+          icon={<RiFileAddLine />}
+          toolTip={"Add file"}
+          onClick={handleAddFileToggle}
+        />
         <IconButton icon={<RiFolderAddLine />} toolTip={"Add folder"} />
       </div>
       <Input
