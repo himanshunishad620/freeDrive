@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const useFileUpload = () => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const uploadFile = async (file) => {
     if (!file) {
@@ -18,7 +18,7 @@ const useFileUpload = () => {
     formData.append("document", file);
     formData.append("chatId", "-1002230179133");
 
-    setLoading(true);
+    setIsLoading(true);
 
     try {
       const response = await axios.post(
@@ -42,11 +42,11 @@ const useFileUpload = () => {
       return { msg: "Upload failed!" };
       //       setStatus("Upload failed.");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { uploadFile, loading };
+  return { uploadFile, isLoading };
 };
 
 export default useFileUpload;

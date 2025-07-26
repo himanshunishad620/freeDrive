@@ -3,6 +3,7 @@ import Input from "./Input";
 
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaArrowLeft } from "react-icons/fa6";
+import { RiFileDownloadLine } from "react-icons/ri";
 import {
   RiDeleteBin6Line,
   RiFileAddLine,
@@ -26,8 +27,10 @@ export default function FileControls({
     disabled,
     setDisabled,
     select,
+    selected,
   } = useBreadcrumbs();
   // console.log(visitedFolders);
+  console.log(selected);
   return (
     <div className="sticky top-0 left-0 flex w-full items-center justify-between bg-white p-2 shadow-md">
       <div className="flex items-center gap-0 pr-3 md:gap-2 md:pr-0">
@@ -42,16 +45,7 @@ export default function FileControls({
           }}
           toolTip={"Back"}
         />
-        <IconButton
-          disabled={disabled}
-          icon={<RiDeleteBin6Line />}
-          toolTip={"Delete"}
-        />
-        <IconButton
-          disabled={disabled}
-          icon={<BiRename />}
-          toolTip={"Rename"}
-        />
+
         <IconButton
           icon={<RiFileAddLine />}
           toolTip={"Add file"}
@@ -61,6 +55,21 @@ export default function FileControls({
           icon={<RiFolderAddLine />}
           toolTip={"Add folder"}
           onClick={handleCreateFolderToggle}
+        />
+        <IconButton
+          icon={<RiFileDownloadLine />}
+          disabled={selected.type !== "file"}
+          toolTip={"Download"}
+        />
+        <IconButton
+          disabled={disabled}
+          icon={<RiDeleteBin6Line />}
+          toolTip={"Delete"}
+        />
+        <IconButton
+          disabled={disabled}
+          icon={<BiRename />}
+          toolTip={"Rename"}
         />
       </div>
       <Input

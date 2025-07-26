@@ -12,10 +12,10 @@ export default function BreadcrumbProvider({ children }) {
     setVisitedFolders((pre) => [...pre, `${folderName + ">"}`]);
   };
   const removerVisitedFolder = (folder) => {
-    console.log(folder);
+    // console.log(folder);
     setVisitedFolders((pre) => pre.filter((i) => i !== folder));
   };
-  console.log(selected);
+  // console.log(selected);
 
   return (
     <BreadcrumbsContext.Provider

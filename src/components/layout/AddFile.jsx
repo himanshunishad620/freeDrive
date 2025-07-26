@@ -3,8 +3,14 @@ import { MdOutlineUploadFile, MdCancel } from "react-icons/md";
 import { LuFileAudio } from "react-icons/lu";
 import Button from "../UI/Button";
 import IconButton from "../UI/IconButton";
-export default function AddFile({ handleAddFileToggle }) {
+import useFileUpload from "../../hooks/useFileUpload";
+import { useAddFileMutation } from "../../api/directoryApi";
+import { toast } from "react-toastify";
+export default function AddFile({ handleAddFileToggle, _id }) {
+  const { uploadFile, isLoading } = useFileUpload();
+  const [addFile] = useAddFileMutation();
   const [file, setFile] = useState(null);
+  const [fileUploadLoading, setFileUploadLoading] = useState(false);
   const [url, setUrl] = useState(null);
   const handleFileChange = (e) => {
     // const upload=e.target.files[0]
@@ -13,9 +19,33 @@ export default function AddFile({ handleAddFileToggle }) {
     setFile(e.target.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
   };
+  const handleFileUpload = async (e) => {
+    setFileUploadLoading(true);
+    e.preventDefault();
+    try {
+      await uploadFile(file);
+      const res = await addFile({
+        parentFolderId: _id,
+        fileName: file.name,
+        fileSize: file.size,
+        fileType: file.type,
+      });
+      console.log(res);
+      handleAddFileToggle(false);
+      toast.success("File Uploaded Successfuly!");
+      // await uploadFile(file);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setFileUploadLoading(false);
+    }
+  };
   return (
     <div className="fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-black/40">
-      <form className="relative w-90 bg-white px-10 py-5 md:w-100">
+      <form
+        onSubmit={handleFileUpload}
+        className="relative w-90 bg-white px-10 py-5 md:w-100"
+      >
         {/* <MdCancel className="absolute top-[-10px] right-[-10px] rounded-full bg-white p-1 text-4xl" /> */}
         {/* <div className="absolute top-2 right-2 rounded-full bg-white">
           <IconButton icon={<MdCancel />} onClick={handleAddFileToggle} />
@@ -69,7 +99,11 @@ export default function AddFile({ handleAddFileToggle }) {
             )}
           </div>
         </label>
-        <Button label={"Upload"} type={"Submit"} />
+        <Button
+          label={"Upload"}
+          type={"Submit"}
+          isLoading={fileUploadLoading}
+        />
         <input
           id="fileInput"
           onChange={handleFileChange}

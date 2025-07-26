@@ -21,6 +21,7 @@ export default function FileContainer() {
   const handleCreateFolderToggle = () => {
     setCreateFolderPopup((pre) => !pre);
   };
+  console.log(_id);
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
       <FileControls
@@ -41,10 +42,13 @@ export default function FileContainer() {
         ))}
       </div>
       {fileUplaodPoppup && (
-        <AddFile handleAddFileToggle={handleAddFileToggle} />
+        <AddFile _id={_id} handleAddFileToggle={handleAddFileToggle} />
       )}
       {createFolderPopup && (
-        <CreateFolder handleCreateFolderToggle={handleCreateFolderToggle} />
+        <CreateFolder
+          _id={_id}
+          handleCreateFolderToggle={handleCreateFolderToggle}
+        />
       )}
     </div>
   );
