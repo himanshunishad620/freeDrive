@@ -29,6 +29,22 @@ export const directoryApi = createApi({
       }),
       invalidatesTags: ["folders"],
     }),
+    deleteFile: builder.mutation({
+      query: (data) => ({
+        url: "api/directory/removeFile",
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["folders"],
+    }),
+    deleteFolder: builder.mutation({
+      query: (data) => ({
+        url: "api/directory/removeFolder",
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["folders"],
+    }),
   }),
 });
 
@@ -36,4 +52,6 @@ export const {
   useReadDirectoryQuery,
   useCreateFolderMutation,
   useAddFileMutation,
+  useDeleteFileMutation,
+  useDeleteFolderMutation,
 } = directoryApi;

@@ -19,6 +19,7 @@ import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 export default function FileControls({
   handleAddFileToggle,
   handleCreateFolderToggle,
+  handleDeleteToggle,
 }) {
   const navigate = useNavigate();
   const {
@@ -30,7 +31,7 @@ export default function FileControls({
     selected,
   } = useBreadcrumbs();
   // console.log(visitedFolders);
-  console.log(selected);
+  // console.log(selected);
   return (
     <div className="sticky top-0 left-0 flex w-full items-center justify-between bg-white p-2 shadow-md">
       <div className="flex items-center gap-0 pr-3 md:gap-2 md:pr-0">
@@ -65,6 +66,7 @@ export default function FileControls({
           disabled={disabled}
           icon={<RiDeleteBin6Line />}
           toolTip={"Delete"}
+          onClick={handleDeleteToggle}
         />
         <IconButton
           disabled={disabled}

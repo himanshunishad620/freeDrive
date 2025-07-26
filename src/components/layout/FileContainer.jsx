@@ -8,6 +8,7 @@ import Spinner from "../UI/Spinner";
 import { useState } from "react";
 import AddFile from "./AddFile";
 import CreateFolder from "./CreateFolder";
+import DeleteFileandFolder from "./DeleteFileandFolder";
 
 export default function FileContainer() {
   const location = useLocation();
@@ -15,17 +16,23 @@ export default function FileContainer() {
   const { data, isLoading } = useReadDirectoryQuery(_id);
   const [fileUplaodPoppup, setFileUploadPopup] = useState(false);
   const [createFolderPopup, setCreateFolderPopup] = useState(false);
+  const [deletePopup, setDeletePopup] = useState(false);
+
+  const handleDeleteToggle = () => {
+    setDeletePopup((pre) => !pre);
+  };
   const handleAddFileToggle = () => {
     setFileUploadPopup((pre) => !pre);
   };
   const handleCreateFolderToggle = () => {
     setCreateFolderPopup((pre) => !pre);
   };
-  console.log(_id);
+  // console.log(_id);
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
       <FileControls
         handleAddFileToggle={handleAddFileToggle}
+        handleDeleteToggle={handleDeleteToggle}
         handleCreateFolderToggle={handleCreateFolderToggle}
       />
       {isLoading ? (
@@ -50,6 +57,13 @@ export default function FileContainer() {
           handleCreateFolderToggle={handleCreateFolderToggle}
         />
       )}
+      {deletePopup && (
+        <DeleteFileandFolder
+          _id={_id}
+          handleDeleteToggle={handleDeleteToggle}
+        />
+      )}
+      {/* <DeleteFileandFolder /> */}
     </div>
   );
 }
