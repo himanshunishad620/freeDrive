@@ -11,8 +11,8 @@ export default function Sidebar() {
   return (
     <div className="fixed bottom-0 left-0 z-10 h-11 w-full bg-white md:static md:block md:h-full md:w-1/4 md:p-3">
       <nav className="items-left flex flex-row justify-evenly md:flex-col">
-        <h1 className="hidden items-center justify-center gap-2 py-10 text-3xl font-semibold md:flex">
-          <RxDashboard className="font-bold" />
+        <h1 className="hidden items-center justify-center gap-2 py-10 text-3xl font-semibold text-[#363636] md:flex">
+          <RxDashboard className="font-bold text-blue-500" />
           Dabshboard
         </h1>
         <NavLink

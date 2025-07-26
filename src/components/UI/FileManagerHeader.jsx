@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function FileManagerHeader() {
   const navigate = useNavigate();
   return (
-    <h1 className="flex items-center px-3 pt-3 text-2xl font-semibold text-[#5b5b5b]">
+    <h1 className="flex items-center px-3 pt-3 pl-6 text-2xl font-semibold text-[#5b5b5b]">
       <IconButton
         icon={<FaArrowLeft />}
         // disabled={visitedFolders.length < 2}

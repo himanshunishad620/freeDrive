@@ -4,20 +4,29 @@ import { useReadDirectoryQuery } from "../../api/directoryApi";
 import Folder from "../UI/Folder";
 import File from "../UI/File";
 import Spinner from "../UI/Spinner";
-import FileUploader from "./FileUploader";
+// import FileUploader from "./AddFile";
 import { useState } from "react";
+import AddFile from "./AddFile";
+import CreateFolder from "./CreateFolder";
 
 export default function FileContainer() {
   const location = useLocation();
   const { _id } = location.state || {};
   const { data, isLoading } = useReadDirectoryQuery(_id);
   const [fileUplaodPoppup, setFileUploadPopup] = useState(false);
+  const [createFolderPopup, setCreateFolderPopup] = useState(false);
   const handleAddFileToggle = () => {
     setFileUploadPopup((pre) => !pre);
   };
+  const handleCreateFolderToggle = () => {
+    setCreateFolderPopup((pre) => !pre);
+  };
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
-      <FileControls handleAddFileToggle={handleAddFileToggle} />
+      <FileControls
+        handleAddFileToggle={handleAddFileToggle}
+        handleCreateFolderToggle={handleCreateFolderToggle}
+      />
       {isLoading ? (
         <div className="p-3">
           <Spinner isBlack={true} />
@@ -32,7 +41,10 @@ export default function FileContainer() {
         ))}
       </div>
       {fileUplaodPoppup && (
-        <FileUploader handleAddFileToggle={handleAddFileToggle} />
+        <AddFile handleAddFileToggle={handleAddFileToggle} />
+      )}
+      {createFolderPopup && (
+        <CreateFolder handleCreateFolderToggle={handleCreateFolderToggle} />
       )}
     </div>
   );

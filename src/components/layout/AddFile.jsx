@@ -3,7 +3,7 @@ import { MdOutlineUploadFile, MdCancel } from "react-icons/md";
 import { LuFileAudio } from "react-icons/lu";
 import Button from "../UI/Button";
 import IconButton from "../UI/IconButton";
-export default function FileUploader({ handleAddFileToggle }) {
+export default function AddFile({ handleAddFileToggle }) {
   const [file, setFile] = useState(null);
   const [url, setUrl] = useState(null);
   const handleFileChange = (e) => {
@@ -17,14 +17,15 @@ export default function FileUploader({ handleAddFileToggle }) {
     <div className="fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-black/40">
       <form className="relative w-90 bg-white px-10 py-5 md:w-100">
         {/* <MdCancel className="absolute top-[-10px] right-[-10px] rounded-full bg-white p-1 text-4xl" /> */}
-        <div className="absolute top-2 right-2 rounded-full bg-white">
+        {/* <div className="absolute top-2 right-2 rounded-full bg-white">
           <IconButton icon={<MdCancel />} onClick={handleAddFileToggle} />
-        </div>
-        <h1 className="mb-5 text-center text-2xl font-bold text-blue-500">
-          Upload File
+        </div> */}
+        <h1 className="mb-5 flex justify-between text-center text-2xl font-bold text-blue-500">
+          Upload File{" "}
+          <IconButton icon={<MdCancel />} onClick={handleAddFileToggle} />
         </h1>
         <label htmlFor="fileInput">
-          <div className="mb-5 flex aspect-square flex-1 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-400 p-2 duration-200 hover:bg-[#f3f3f3]">
+          <div className="mb-5 flex aspect-square flex-1 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-gray-400 p-2 duration-200 hover:bg-[#f3f3f3]">
             {!file && (
               <>
                 <MdOutlineUploadFile className="text-8xl text-[#c6c6c6]" />
@@ -68,12 +69,14 @@ export default function FileUploader({ handleAddFileToggle }) {
             )}
           </div>
         </label>
-        <Button label={"Upload"} type={"Button"} />
+        <Button label={"Upload"} type={"Submit"} />
         <input
           id="fileInput"
           onChange={handleFileChange}
           type="file"
           className="hidden"
+          required={true}
+          // disabled={true}
         />
       </form>
     </div>
