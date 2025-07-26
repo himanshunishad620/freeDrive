@@ -16,7 +16,7 @@ export default function File({ file }) {
       onClick={handleClick}
     >
       <LuFileText className="text-4xl text-[#d0d0d0] md:text-6xl" />
-      <p className="text-center text-[12px] font-medium text-[#5b5b5b]">
+      <p className="text-center text-[10px] font-medium text-[#5b5b5b] md:text-[12px]">
         {file.fileName}
       </p>
     </div>

@@ -6,7 +6,7 @@ import { FaRegFolderClosed } from "react-icons/fa6";
 export default function Records() {
   return (
     <div className="grid grid-cols-2 gap-3 p-3 md:grid-cols-3">
-      <div className="col-span-2 flex aspect-5/1 w-full items-center gap-5 rounded-xl bg-white p-1 md:col-span-1 md:p-5">
+      <div className="col-span-2 flex aspect-5/1 w-full items-center gap-5 bg-white p-1 md:col-span-1 md:p-5">
         <div className="flex aspect-square w-4/24 items-center justify-center rounded-full bg-[#cfe6ff] md:w-3/12">
           <GrStorage className="text-2xl text-blue-500 md:text-4xl" />
         </div>
@@ -22,7 +22,7 @@ export default function Records() {
           </div>
         </div>
       </div>
-      <div className="flex aspect-5/2 w-full items-center gap-5 rounded-xl bg-white p-1 md:aspect-5/1 md:w-full md:p-5">
+      <div className="flex aspect-5/2 w-full items-center gap-5 bg-white p-1 md:aspect-5/1 md:w-full md:p-5">
         <div className="flex aspect-square w-12/24 items-center justify-center rounded-full bg-[#cfe6ff] md:w-3/12">
           <FaRegFolderClosed className="text-2xl text-blue-500 md:text-4xl" />
         </div>
@@ -35,7 +35,7 @@ export default function Records() {
           </p>
         </div>
       </div>
-      <div className="flex aspect-5/2 w-full items-center gap-5 rounded-xl bg-white p-1 md:aspect-5/1 md:w-full md:p-5">
+      <div className="flex aspect-5/2 w-full items-center gap-5 bg-white p-1 md:aspect-5/1 md:w-full md:p-5">
         <div className="flex aspect-square w-12/24 items-center justify-center rounded-full bg-[#cfe6ff] md:w-3/12">
           <FaRegFileAlt className="text-2xl text-blue-500 md:text-4xl" />
         </div>

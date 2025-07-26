@@ -11,7 +11,8 @@ import Records from "../layout/Records";
 import RootDirectory from "../layout/FileContainer";
 import FileContainer from "../layout/FileContainer";
 import BreadcrumbProvider from "../../contexts/BreadcrumbsContext";
-import DashboardHeader from "../UI/DashboardHeader";
+
+import FileManagerHeader from "../UI/FileManagerHeader";
 
 export default function FileManager() {
   // const { _id } = useParams();
@@ -59,7 +60,7 @@ export default function FileManager() {
     //   </div> */}
     // </div>
     <div className="flex h-full w-full flex-col bg-[#f2f2f2]">
-      <DashboardHeader />
+      <FileManagerHeader />
       <Records />
       <BreadcrumbProvider>
         <FileContainer />

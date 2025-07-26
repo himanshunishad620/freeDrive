@@ -25,7 +25,7 @@ export default function FileContainer() {
   return (
     <div
       // onClick={handleClick}
-      className="relative m-3 mb-18 flex-1 overflow-scroll rounded-xl bg-white md:mb-0"
+      className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0"
     >
       <FileControls />
       {/* <Breadcrumbs /> */}
