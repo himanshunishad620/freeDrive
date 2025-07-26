@@ -27,13 +27,13 @@ export default function Contact() {
       <div className="relative flex h-full w-full">
         <form
           method="POST"
-          className="items-left relative ml-0 flex w-full flex-col justify-center gap-2 bg-white pl-10 md:ml-3 md:w-1/2"
+          className="items-left relative ml-0 flex w-full flex-col justify-start gap-2 bg-white pt-20 pl-10 md:ml-3 md:w-1/2 md:justify-center md:pt-0"
         >
           <h1 className="text-4xl font-semibold text-blue-500">
             {" "}
             Get In Touch
           </h1>
-          <p className="w-80 text-justify leading-5 text-[#5b5b5b] md:w-120">
+          <p className="mb-2 w-80 text-justify text-[13px] leading-4 text-[#5b5b5b] md:w-120">
             We’d love to hear from you! Whether you have questions about
             features, need support, want to share feedback, or just want to say
             hello — feel free to reach out. Your input helps us improve and
@@ -64,7 +64,7 @@ export default function Contact() {
           <div className="w-40">
             <Button type={"submit"} label={"Send"} />
           </div>
-          <div className="flex gap-3">
+          <div className="mt-5 ml-[-40px] flex justify-center gap-3">
             <a
               href=""
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
