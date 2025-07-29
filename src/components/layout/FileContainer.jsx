@@ -37,7 +37,7 @@ export default function FileContainer() {
     // console.log("Woring");
     setUpdateFolderAndFileNamePopup((pre) => !pre);
   };
-  // console.log(_id);
+
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
       <FileControls
