@@ -31,7 +31,11 @@ export default function CreateFolder({ handleCreateFolderToggle, _id }) {
         </div> */}
         <h1 className="mb-3 flex w-full justify-between text-2xl font-bold text-blue-500">
           Create Folder{" "}
-          <IconButton icon={<MdCancel />} onClick={handleCreateFolderToggle} />
+          <IconButton
+            icon={<MdCancel />}
+            type={"button"}
+            onClick={handleCreateFolderToggle}
+          />
         </h1>
         <Input
           type={"text"}

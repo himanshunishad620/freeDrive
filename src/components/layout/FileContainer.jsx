@@ -9,6 +9,8 @@ import { useState } from "react";
 import AddFile from "./AddFile";
 import CreateFolder from "./CreateFolder";
 import DeleteFileandFolder from "./DeleteFileandFolder";
+import UpdateFolderAndFileName from "./UpdateFolderandFileName";
+import EmptyFallBack from "../UI/EmptyFallBack";
 
 export default function FileContainer() {
   const location = useLocation();
@@ -17,7 +19,11 @@ export default function FileContainer() {
   const [fileUplaodPoppup, setFileUploadPopup] = useState(false);
   const [createFolderPopup, setCreateFolderPopup] = useState(false);
   const [deletePopup, setDeletePopup] = useState(false);
+  const [updateFolderAndFileNamePopup, setUpdateFolderAndFileNamePopup] =
+    useState(false);
 
+  // const folderList = () => data?.result.childFolders;
+  // const dataList = () => data?.result.dataFiles;
   const handleDeleteToggle = () => {
     setDeletePopup((pre) => !pre);
   };
@@ -27,6 +33,10 @@ export default function FileContainer() {
   const handleCreateFolderToggle = () => {
     setCreateFolderPopup((pre) => !pre);
   };
+  const handleUpdateFolderAndFileNameToggle = () => {
+    // console.log("Woring");
+    setUpdateFolderAndFileNamePopup((pre) => !pre);
+  };
   // console.log(_id);
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
@@ -34,6 +44,9 @@ export default function FileContainer() {
         handleAddFileToggle={handleAddFileToggle}
         handleDeleteToggle={handleDeleteToggle}
         handleCreateFolderToggle={handleCreateFolderToggle}
+        handleUpdateFolderAndFileNameToggle={
+          handleUpdateFolderAndFileNameToggle
+        }
       />
       {isLoading ? (
         <div className="p-3">
@@ -48,6 +61,10 @@ export default function FileContainer() {
           <File key={item._id} file={item} />
         ))}
       </div>
+      {data?.result.childFolders.length <= 0 &&
+      data?.result.dataFiles.length <= 0 ? (
+        <EmptyFallBack />
+      ) : null}
       {fileUplaodPoppup && (
         <AddFile _id={_id} handleAddFileToggle={handleAddFileToggle} />
       )}
@@ -61,6 +78,14 @@ export default function FileContainer() {
         <DeleteFileandFolder
           _id={_id}
           handleDeleteToggle={handleDeleteToggle}
+        />
+      )}
+      {updateFolderAndFileNamePopup && (
+        <UpdateFolderAndFileName
+          _id={_id}
+          handleUpdateFolderAndFileNameToggle={
+            handleUpdateFolderAndFileNameToggle
+          }
         />
       )}
       {/* <DeleteFileandFolder /> */}

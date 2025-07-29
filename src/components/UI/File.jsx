@@ -6,12 +6,25 @@ export default function File({ file }) {
   const { select, selected, setDisabled } = useBreadcrumbs();
 
   const handleClick = () => {
-    select({ _id: file._id, type: "file" });
+    select({
+      _id: file._id,
+      fileName: file.fileName.split(".")[0],
+      type: "file",
+      fileSize: file.fileSize,
+    });
     setDisabled(false);
   };
+  //  const handleDownload = () => {
+  //   const link = document.createElement("a");
+  //   link.href = imageUrl;          // Image URL
+  //   link.download = "image.jpg";   // File name when saved
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
   return (
     <div
-      className={`flex cursor-pointer flex-col items-center justify-between pt-2 duration-200 ${selected._id === file._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`flex cursor-pointer flex-col items-center justify-start pt-2 duration-200 ${selected._id === file._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       key={file._id}
       onClick={handleClick}
     >

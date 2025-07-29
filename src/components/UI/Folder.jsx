@@ -13,7 +13,11 @@ export default function Folder({ folder }) {
   const handleClick = () => {
     clickTimeout.current = setTimeout(() => {
       setDisabled(false);
-      select({ _id: folder._id, type: "folder" });
+      select({
+        _id: folder._id,
+        folderName: folder.folderName,
+        type: "folder",
+      });
     }, 200);
   };
   // const handleClick = () => {
@@ -29,7 +33,7 @@ export default function Folder({ folder }) {
   // }, [200]);
   return (
     <div
-      className={`flex cursor-pointer flex-col items-center justify-between duration-200 ${selected._id === folder._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`flex cursor-pointer flex-col items-center justify-start duration-200 ${selected._id === folder._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       onDoubleClick={() => {
         clearTimeout(clickTimeout.current);
         setDisabled(true);

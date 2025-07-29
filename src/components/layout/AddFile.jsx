@@ -23,8 +23,10 @@ export default function AddFile({ handleAddFileToggle, _id }) {
     setFileUploadLoading(true);
     e.preventDefault();
     try {
-      await uploadFile(file);
+      const uploadedFile = await uploadFile(file);
+      console.log(uploadedFile);
       const res = await addFile({
+        fileDownloadId: uploadedFile.file_id,
         parentFolderId: _id,
         fileName: file.name,
         fileSize: file.size,

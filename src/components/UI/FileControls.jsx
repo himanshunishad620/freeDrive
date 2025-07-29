@@ -20,6 +20,7 @@ export default function FileControls({
   handleAddFileToggle,
   handleCreateFolderToggle,
   handleDeleteToggle,
+  handleUpdateFolderAndFileNameToggle,
 }) {
   const navigate = useNavigate();
   const {
@@ -72,6 +73,7 @@ export default function FileControls({
           disabled={disabled}
           icon={<BiRename />}
           toolTip={"Rename"}
+          onClick={handleUpdateFolderAndFileNameToggle}
         />
       </div>
       <Input

@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../UI/Button";
 import LightButton from "../UI/LightButton";
 import {
@@ -8,7 +7,7 @@ import {
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 
 export default function DeleteFileandFolder({ handleDeleteToggle, _id }) {
-  const { selected } = useBreadcrumbs();
+  const { selected, select, setDisabled } = useBreadcrumbs();
   const [deleteFile, { isLoading: fileDeleteLoading }] =
     useDeleteFileMutation();
   const [deleteFolder, { isLoading: folderDeleteLoading }] =
@@ -17,9 +16,15 @@ export default function DeleteFileandFolder({ handleDeleteToggle, _id }) {
     e.preventDefault();
     const res =
       selected.type === "file"
-        ? await deleteFile({ folderId: _id, fileId: selected._id })
+        ? await deleteFile({
+            folderId: _id,
+            fileId: selected._id,
+            fileSize: selected.fileSize,
+          })
         : await deleteFolder({ parentFolderId: _id, _id: selected._id });
     handleDeleteToggle();
+    select("");
+    setDisabled(true);
     console.log(res);
   };
   return (
