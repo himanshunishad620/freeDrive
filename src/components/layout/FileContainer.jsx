@@ -9,7 +9,7 @@ import { useState } from "react";
 import AddFile from "./AddFile";
 import CreateFolder from "./CreateFolder";
 import DeleteFileandFolder from "./DeleteFileandFolder";
-import UpdateFolderAndFileName from "./UpdateFolderandFileName";
+import UpdateFolderAndFileName from "./UpdateFolderAndFileName";
 import EmptyFallBack from "../UI/EmptyFallBack";
 
 export default function FileContainer() {
