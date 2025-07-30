@@ -76,11 +76,13 @@ export default function FileControls({
           onClick={handleUpdateFolderAndFileNameToggle}
         />
       </div>
-      <Input
-        type="text"
-        icon={<FaMagnifyingGlass />}
-        placeholder={"Search by name"}
-      />
+      <div className="flex justify-center">
+        <Input
+          type="text"
+          icon={<FaMagnifyingGlass />}
+          placeholder={"Search by name"}
+        />
+      </div>
     </div>
   );
 }
