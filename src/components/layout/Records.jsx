@@ -3,10 +3,10 @@ import { GrStorage } from "react-icons/gr";
 
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaRegFolderClosed } from "react-icons/fa6";
-import { useReadDirectoryQuery } from "../../api/directoryApi";
+import { useReadDirectoryRecordQuery } from "../../api/directoryApi";
 export default function Records() {
-  const { data, isLoading } = useReadDirectoryQuery();
-  console.log(data || isLoading);
+  const { data } = useReadDirectoryRecordQuery();
+  // console.log(data || isLoading);
   return (
     <div className="grid grid-cols-2 gap-3 p-3 md:grid-cols-3">
       <div className="col-span-2 flex aspect-5/1 w-full items-center gap-5 bg-white p-1 md:col-span-1 md:p-5">

@@ -16,6 +16,8 @@ export default function FileContainer() {
   const location = useLocation();
   const { _id } = location.state || {};
   const { data, isLoading } = useReadDirectoryQuery(_id);
+  // console.log("State", data);
+  // console.log(isLoading);
   const [fileUplaodPoppup, setFileUploadPopup] = useState(false);
   const [createFolderPopup, setCreateFolderPopup] = useState(false);
   const [deletePopup, setDeletePopup] = useState(false);
@@ -37,7 +39,8 @@ export default function FileContainer() {
     // console.log("Woring");
     setUpdateFolderAndFileNamePopup((pre) => !pre);
   };
-
+  // const data = [];
+  // console.log("Route", _id);
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
       <FileControls

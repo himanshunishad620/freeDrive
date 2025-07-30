@@ -5,6 +5,7 @@ import { FaFileAlt } from "react-icons/fa";
 import {
   // useReadDirectoryMutation,
   useReadDirectoryQuery,
+  useReadDirectoryRecordQuery,
   // useReadDirectoryQuery,
 } from "../../api/directoryApi";
 import Records from "../layout/Records";
@@ -21,7 +22,7 @@ export default function FileManager() {
   const { _id } = location.state || {};
   // console.log(_id);
   const navigate = useNavigate();
-  const { data, isLoading } = useReadDirectoryQuery(_id);
+  // const { data, isLoading } = useReadDirectoryRecordQuery();
   // if (isLoading) return <h1>Loading....</h1>;
   return (
     // <div className="rounded-xl bg-red-300 p-3">
