@@ -34,8 +34,8 @@ export default function FileControls({
   // console.log(visitedFolders);
   // console.log(selected);
   return (
-    <div className="sticky top-0 left-0 flex w-full items-center justify-between bg-white p-2 shadow-md">
-      <div className="flex items-center gap-0 pr-3 md:gap-2 md:pr-0">
+    <div className="items-left sticky top-0 left-0 flex w-full flex-col-reverse justify-between bg-white p-2 shadow-md md:flex-row md:items-center">
+      <div className="my-2 flex items-center gap-3 md:my-0 md:gap-2 md:pr-0">
         <IconButton
           icon={<FaArrowLeft />}
           // disabled={visitedFolders.length < 2}
@@ -60,7 +60,7 @@ export default function FileControls({
         />
         <IconButton
           icon={<RiFileDownloadLine />}
-          disabled={selected.type !== "file"}
+          disabled={selected?.type !== "file"}
           toolTip={"Download"}
         />
         <IconButton

@@ -33,7 +33,7 @@ export default function Folder({ folder }) {
   // }, [200]);
   return (
     <div
-      className={`flex cursor-pointer flex-col items-center justify-start duration-200 ${selected._id === folder._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`flex cursor-pointer flex-col items-center justify-start duration-200 ${selected?._id === folder._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       onDoubleClick={() => {
         select(null);
         clearTimeout(clickTimeout.current);
