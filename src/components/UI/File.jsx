@@ -24,7 +24,7 @@ export default function File({ file }) {
   // };
   return (
     <div
-      className={`flex cursor-pointer flex-col items-center justify-start pt-2 duration-200 ${selected?._id === file._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`flex cursor-pointer flex-col items-center justify-start pt-2 duration-200 ${selected._id === file._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       key={file._id}
       onClick={handleClick}
     >

@@ -7,7 +7,7 @@ import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 export default function Folder({ folder }) {
   const navigate = useNavigate();
   const { addVisitedFolder, select, setDisabled, selected } = useBreadcrumbs();
-  select(null);
+  // select(null);
   const clickTimeout = useRef(null);
 
   const handleClick = () => {
