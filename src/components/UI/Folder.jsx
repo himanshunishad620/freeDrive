@@ -7,7 +7,7 @@ import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 export default function Folder({ folder }) {
   const navigate = useNavigate();
   const { addVisitedFolder, select, setDisabled, selected } = useBreadcrumbs();
-
+  select(null);
   const clickTimeout = useRef(null);
 
   const handleClick = () => {
@@ -35,7 +35,6 @@ export default function Folder({ folder }) {
     <div
       className={`flex cursor-pointer flex-col items-center justify-start duration-200 ${selected?._id === folder._id ? "shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       onDoubleClick={() => {
-        select(null);
         clearTimeout(clickTimeout.current);
         setDisabled(true);
         addVisitedFolder(folder.folderName);
