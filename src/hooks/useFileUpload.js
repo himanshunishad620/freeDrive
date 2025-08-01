@@ -34,7 +34,7 @@ const useFileUpload = () => {
         },
       );
 
-      console.log(response.data.data.result.document);
+      console.log(response.data);
       return response.data.data.result.document;
       //       setStatus("File uploaded successfully.");
     } catch (error) {

@@ -1,59 +1,94 @@
-// import { useState } from "react";
-// import axios from "axios";
-// import { useBreadcrumbs } from "../contexts/BreadcrumbsContext";
+import axios from "axios";
+import React, { useState } from "react";
+import { useBreadcrumbs } from "../contexts/BreadcrumbsContext";
 
-// const useFileDownload = () => {
-//   const [isLoading, setIsLoading] = useState(false);
-//   const { selected } = useBreadcrumbs();
-//   const downloadFile = async () => {
-//     const options = {
-//       method: "GET",
-//       url: "https://unlimited-cloud-storage.p.rapidapi.com/rapidapi/telegram/download.php",
-//       params: {
-//         fileId: selected.fileUploadId,
-//       },
-//       headers: {
-//         "x-rapidapi-key": "fe6acbab03mshdb6495c0eea0e81p1f538cjsn5786abddcaef",
-//         "x-rapidapi-host": "unlimited-cloud-storage.p.rapidapi.com",
-//       },
-//     };
+export default function useFileDownload() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { selected } = useBreadcrumbs();
+  //   console.log();
+  async function downloadFile(fileId) {
+    setIsLoading(true);
+    //     const options = {
+    //       method: "GET",
+    //       url: "https://unlimited-cloud-storage.p.rapidapi.com/rapidapi/telegram/download.php",
+    //       params: {
+    //         fileId,
+    //       },
+    //       headers: {
+    //         "x-rapidapi-key": "fe6acbab03mshdb6495c0eea0e81p1f538cjsn5786abddcaef",
+    //         "x-rapidapi-host": "unlimited-cloud-storage.p.rapidapi.com",
+    //       },
+    //     };
+    try {
+      const response = await axios.get(
+        "https://unlimited-cloud-storage.p.rapidapi.com/rapidapi/telegram/download.php",
+        {
+          params: { fileId },
+          headers: {
+            "x-rapidapi-key":
+              "fe6acbab03mshdb6495c0eea0e81p1f538cjsn5786abddcaef",
+            "x-rapidapi-host": "unlimited-cloud-storage.p.rapidapi.com",
+          },
+          //   responseType: "blob", // <--- important
+        },
+      );
+      //       console.log(response.data);
+      //       const fileResponse = await fetch(response.data.file_path);
+      //       const blob = await fileResponse.blob();
 
-//     //    async function fetchData() {
-//     try {
-//       const response = await axios.get(options);
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error(error);
-//     } finally
-//     // }
+      //       const url = window.URL.createObjectURL(new Blob([blob]));
+      //       console.log(blob);
+      const url = response.data.file_path;
+      const link = document.createElement("a");
+      link.href = `https://resumakebackend.onrender.com/api/directory/downloadFileByUrl?url=${encodeURIComponent(
+        url,
+      )}&filename=${selected.fileName + selected.ext}`;
+      //       link.setAttribute("download", selected.fileName + selected.ext); // you can use fileName from API
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
 
-// //     try {
-// //       const response = await axios.post(
-// //         "https://unlimited-cloud-storage.p.rapidapi.com/rapidapi/telegram/upload.php",
-// //         formData,
-// //         {
-// //           headers: {
-// //             "x-rapidapi-key":
-// //               "fe6acbab03mshdb6495c0eea0e81p1f538cjsn5786abddcaef",
-// //             "x-rapidapi-host": "unlimited-cloud-storage.p.rapidapi.com",
-// //             "Content-Type": "multipart/form-data",
-// //           },
-// //         },
-// //       );
+    //     try {
+    //       const response = await axios.request(options);
+    //       console.log(response.data);
+    //       const link = document.createElement("a");
+    //       link.href = response.data.file_path;
+    //       link.download = "Download";
+    //       document.body.appendChild(link);
+    //       link.click();
+    //       document.body.removeChild(link);
+    //       //       window.open(response.data.file_path, "_blank");
+    //     } catch (error) {
+    //       console.error(error);
+    //     } finally {
+    //       setIsLoading(false);
 
-// //       console.log(response.data.data.result.document);
-// //       return response.data.data.result.document;
-// //       //       setStatus("File uploaded successfully.");
-// //     } catch (error) {
-// //       console.error(error);
-// //       return { msg: "Upload failed!" };
-// //       //       setStatus("Upload failed.");
-// //     } finally {
-// //       setIsLoading(false);
-// //     }
-// //   };
+    //  const handleDownload = () => {
+    //     const link = document.createElement("a");
+    //     link.href = fileUrl;
+    //     link.download = selected.fileName;
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    //   };
+    //     setIsLoading(false);
+  }
+  return { downloadFile, isLoading };
+}
 
-//   return { downloadFile, isLoading };
-// };
+// const axios = require('axios');
 
-// export default useFileDownload;
+// async function fetchData() {
+// 	try {
+// 		const response = await axios.request(options);
+// 		console.log(response.data);
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }

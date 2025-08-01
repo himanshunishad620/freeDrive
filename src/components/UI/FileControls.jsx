@@ -15,6 +15,7 @@ import { MdOutlineAddBox } from "react-icons/md";
 import IconButton from "./IconButton";
 import { useNavigate } from "react-router-dom";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
+import useFileDownload from "../../hooks/useFileDownload";
 
 export default function FileControls({
   handleAddFileToggle,
@@ -31,6 +32,7 @@ export default function FileControls({
     select,
     selected,
   } = useBreadcrumbs();
+  const { downloadFile, isLoading } = useFileDownload();
   // console.log(visitedFolders);
   // console.log(selected);
   return (
@@ -62,6 +64,8 @@ export default function FileControls({
           icon={<RiFileDownloadLine />}
           disabled={selected?.type !== "file"}
           toolTip={"Download"}
+          onClick={() => downloadFile(selected.fileDownloadId)}
+          isLoading={isLoading}
         />
         <IconButton
           disabled={disabled}
@@ -74,13 +78,6 @@ export default function FileControls({
           icon={<BiRename />}
           toolTip={"Rename"}
           onClick={handleUpdateFolderAndFileNameToggle}
-        />
-      </div>
-      <div className="flex justify-center">
-        <Input
-          type="text"
-          icon={<FaMagnifyingGlass />}
-          placeholder={"Search by name"}
         />
       </div>
     </div>
