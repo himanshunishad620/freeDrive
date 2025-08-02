@@ -56,7 +56,7 @@ export default function FileContainer() {
           <Spinner isBlack={true} />
         </div>
       ) : null}
-      <div className="grid min-h-0 w-full grid-cols-6 gap-3 p-3 md:grid-cols-12">
+      <div className="grid min-h-0 w-full grid-cols-6 gap-3 p-3 md:grid-cols-9">
         {data?.result.childFolders.map((item) => (
           <Folder key={item._id} folder={item} />
         ))}

@@ -5,7 +5,7 @@ import { RiFileVideoLine, RiFileGifLine } from "react-icons/ri";
 import { FaRegFileImage } from "react-icons/fa";
 import { PiFileXlsBold, PiFilePyBold } from "react-icons/pi";
 import { BsFiletypeDocx, BsFiletypeJava } from "react-icons/bs"; //docs
-import { FaRegFileZipper } from "react-icons/fa6";
+import { FaRegFileZipper, FaSpinner } from "react-icons/fa6";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import {
   TbFileTypeCsv,
@@ -15,103 +15,8 @@ import {
   TbFileTypeSvg,
   TbFileTypePpt,
 } from "react-icons/tb";
-import { Fragment } from "react";
+import { useFetchFileUrlQuery } from "../../api/fileApi";
 
-// function getFileType(extension) {
-//   switch (extension) {
-//     case "txt":
-//       <LuFileText className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "doc":
-//     case "docx":
-//       <BsFiletypeDocx className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "pdf":
-//       <VscFilePdf className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Spreadsheets
-//     case "xls":
-//     case "xlsx":
-//       <PiFileXlsBold className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "csv":
-//       <TbFileTypeCsv className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Presentations
-//     case "ppt":
-//     case "pptx":
-//       <TbFileTypePpt className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Images
-//     case "jpg":
-//     case "jpeg":
-//     case "png":
-//     case "webp":
-//       return <FaRegFileImage className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     case "gif":
-//       <RiFileGifLine className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "svg":
-//       <TbFileTypeSvg className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//       <VscFilePdf className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Audio
-//     case "mp3":
-//     case "wav":
-//     case "aac":
-//     case "ogg":
-//       <LuFileAudio className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Video
-//     case "mp4":
-//     case "mov":
-//     case "mkv":
-//     case "avi":
-//     case "webm":
-//       <RiFileVideoLine className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Archives
-//     case "zip":
-//     case "rar":
-//     case "7z":
-//     case "tar":
-//     case "gz":
-//       <FaRegFileZipper className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     // Code & Data
-//     case "html":
-//     case "htm":
-//       <TbFileTypeHtml className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "css":
-//       <TbFileTypeCss className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "js":
-//       <TbFileTypeJs className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     case "py":
-//       <PiFilePyBold className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-//     case "java":
-//       return <BsFiletypeJava className="text-4xl text-[#d0d0d0] md:text-6xl" />;
-//       break;
-
-//     default:
-//         <AiOutlineFileUnknown className="text-4xl text-[#d0d0d0] md:text-6xl" />
-//       break;
-//   }
-// }
 function getFileType(extension) {
   switch (extension) {
     // Documents
@@ -205,9 +110,10 @@ function getFileType(extension) {
 export default function File({ file }) {
   const extension = file.fileName.split(".").pop().toLowerCase();
   const { select, selected, setDisabled } = useBreadcrumbs();
-  // console.log(file.fileDownloadId);
+  console.log(file.fileDownloadId);
+  const { data, isLoading } = useFetchFileUrlQuery(file.fileDownloadId);
+  console.log(file || null);
   const handleClick = () => {
-    console.log(file.fileName);
     const fileArr = file.fileName.split(".");
     select({
       _id: file._id,
@@ -219,25 +125,37 @@ export default function File({ file }) {
     });
     setDisabled(false);
   };
-  // console.log(file.fileType);
-  // const fileIconSwitch = () => {
-  //   switch (file.fileType) {
-  //     case value:
-  //       break;
 
-  //     default:
-  //       break;
-  //   }
-  // };
+  const handleDoubleClick = () => {
+    // const link = document.createElement("a");
+    // link.href =
+    //   "https://scripts.vaultifier.space/rapidapi/telegram/downloads/file_4324.png";
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
+    if (!data) return;
+    window.open(data.file_path, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div
-      className={`flex cursor-pointer flex-col items-center justify-start pt-2 duration-200 ${selected._id === file._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`flex aspect-square w-full cursor-pointer flex-col items-center justify-evenly pt-2 duration-200 ${selected._id === file._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       key={file._id}
       onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
     >
       {/* <LuFileText className="text-4xl text-[#d0d0d0] md:text-6xl" /> */}
-      {getFileType(extension)}
-      <p className="text-center text-[10px] font-medium text-[#5b5b5b] md:text-[12px]">
+      {isLoading ? (
+        <FaSpinner className="animate-spin" />
+      ) : file.fileType.startsWith("image/") ? (
+        <img className="aspect-square w-2/3" src={data.file_path} alt="" />
+      ) : (
+        getFileType(extension)
+      )}
+      <p
+        className="w-full truncate text-center text-[10px] font-medium text-[#5b5b5b] md:text-[12px]"
+        title={file.fileName}
+      >
         {file.fileName}
       </p>
     </div>

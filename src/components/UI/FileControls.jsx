@@ -63,7 +63,7 @@ export default function FileControls({
         <IconButton
           icon={<RiFileDownloadLine />}
           disabled={selected?.type !== "file"}
-          toolTip={"Download"}
+          toolTip={"Download file"}
           onClick={() => downloadFile(selected.fileDownloadId)}
           isLoading={isLoading}
         />

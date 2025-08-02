@@ -33,7 +33,8 @@ export default function Folder({ folder }) {
   // }, [200]);
   return (
     <div
-      className={`flex cursor-pointer flex-col items-center justify-start duration-200 ${selected?._id === folder._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`flex aspect-square w-full cursor-pointer flex-col items-center justify-evenly pt-2 duration-200 ${selected._id === folder._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      // className={`flex cursor-pointer flex-col items-center justify-start duration-200 ${selected?._id === folder._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       onDoubleClick={() => {
         clearTimeout(clickTimeout.current);
         setDisabled(true);
@@ -44,7 +45,10 @@ export default function Folder({ folder }) {
       onClick={handleClick}
     >
       <IoFolderOpen className="text-5xl text-[#8bc3ff] md:text-7xl" />
-      <p className="text-center text-[10px] font-medium text-[#5b5b5b] md:text-[12px]">
+      <p
+        className="w-full truncate text-center text-[10px] font-medium text-[#5b5b5b] md:text-[12px]"
+        title={folder.folderName}
+      >
         {folder.folderName}
       </p>
     </div>
