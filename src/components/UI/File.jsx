@@ -16,6 +16,7 @@ import {
   TbFileTypePpt,
 } from "react-icons/tb";
 import { useFetchFileUrlQuery } from "../../api/fileApi";
+import { useState } from "react";
 
 function getFileType(extension) {
   switch (extension) {
@@ -110,11 +111,20 @@ function getFileType(extension) {
 export default function File({ file }) {
   const extension = file.fileName.split(".").pop().toLowerCase();
   const { select, selected, setDisabled } = useBreadcrumbs();
+  const [previousSelect, setPreviousSelect] = useState({});
   console.log(file.fileDownloadId);
   const { data, isLoading } = useFetchFileUrlQuery(file.fileDownloadId);
   console.log(file || null);
   const handleClick = () => {
     const fileArr = file.fileName.split(".");
+    setPreviousSelect({
+      _id: file._id,
+      fileName: fileArr[0],
+      type: "file",
+      fileSize: file.fileSize,
+      ext: "." + `${fileArr[fileArr.length - 1]}`,
+      fileDownloadId: file.fileDownloadId,
+    });
     select({
       _id: file._id,
       fileName: fileArr[0],
@@ -133,7 +143,8 @@ export default function File({ file }) {
     // document.body.appendChild(link);
     // link.click();
     // document.body.removeChild(link);
-    if (!data) return;
+
+    if (!data || previousSelect._id === selected._id) return;
     window.open(data.file_path, "_blank", "noopener,noreferrer");
   };
 
