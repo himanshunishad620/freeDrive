@@ -144,8 +144,8 @@ export default function File({ file }) {
     // link.click();
     // document.body.removeChild(link);
 
-    if (!data || previousSelect._id !== selected._id) return;
-    window.open(data.file_path, "_blank", "noopener,noreferrer");
+    if (data && previousSelect._id === selected._id)
+      window.open(data.file_path, "_blank", "noopener,noreferrer");
   };
 
   return (
