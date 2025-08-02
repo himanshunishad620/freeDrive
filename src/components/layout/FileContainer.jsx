@@ -60,7 +60,7 @@ export default function FileContainer() {
         {data?.result.childFolders.map((item) => (
           <Folder key={item._id} folder={item} />
         ))}
-        {data?.result.dataFiles.map((item) => (
+        {data?.result?.dataFiles.map((item) => (
           <File key={item._id} file={item} />
         ))}
       </div>
