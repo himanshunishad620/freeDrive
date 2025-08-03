@@ -117,46 +117,46 @@ export default function File({ file }) {
   const { data, isLoading } = useFetchFileUrlQuery(file.fileDownloadId);
   console.log(file || null);
 
-  const fileRef = useRef();
+  // const fileRef = useRef();
 
-  useDoubleClick({
-    onSingleClick: (e) => {
-      select({
-        _id: file._id,
-        fileName: fileArr[0],
-        type: "file",
-        fileSize: file.fileSize,
-        ext: "." + `${fileArr[fileArr.length - 1]}`,
-        fileDownloadId: file.fileDownloadId,
-      });
-      setDisabled(false);
-    },
-    onDoubleClick: (e) => {
-      window.open(data.file_path, "_blank", "noopener,noreferrer");
-    },
-    ref: fileRef,
-    latency: 250,
-  });
-  // const handleClick = () => {
-  //   const fileArr = file.fileName.split(".");
-  //   setPreviousSelect({
-  //     _id: file._id,
-  //     fileName: fileArr[0],
-  //     type: "file",
-  //     fileSize: file.fileSize,
-  //     ext: "." + `${fileArr[fileArr.length - 1]}`,
-  //     fileDownloadId: file.fileDownloadId,
-  //   });
-  //   select({
-  //     _id: file._id,
-  //     fileName: fileArr[0],
-  //     type: "file",
-  //     fileSize: file.fileSize,
-  //     ext: "." + `${fileArr[fileArr.length - 1]}`,
-  //     fileDownloadId: file.fileDownloadId,
-  //   });
-  //   setDisabled(false);
-  // };
+  // useDoubleClick({
+  //   onSingleClick: (e) => {
+  //     select({
+  //       _id: file._id,
+  //       fileName: fileArr[0],
+  //       type: "file",
+  //       fileSize: file.fileSize,
+  //       ext: "." + `${fileArr[fileArr.length - 1]}`,
+  //       fileDownloadId: file.fileDownloadId,
+  //     });
+  //     setDisabled(false);
+  //   },
+  //   onDoubleClick: (e) => {
+  //     window.open(data.file_path, "_blank", "noopener,noreferrer");
+  //   },
+  //   ref: fileRef,
+  //   latency: 250,
+  // });
+  const handleClick = () => {
+    const fileArr = file.fileName.split(".");
+    setPreviousSelect({
+      _id: file._id,
+      fileName: fileArr[0],
+      type: "file",
+      fileSize: file.fileSize,
+      ext: "." + `${fileArr[fileArr.length - 1]}`,
+      fileDownloadId: file.fileDownloadId,
+    });
+    select({
+      _id: file._id,
+      fileName: fileArr[0],
+      type: "file",
+      fileSize: file.fileSize,
+      ext: "." + `${fileArr[fileArr.length - 1]}`,
+      fileDownloadId: file.fileDownloadId,
+    });
+    setDisabled(false);
+  };
 
   const handleDoubleClick = () => {
     // const link = document.createElement("a");
@@ -174,9 +174,9 @@ export default function File({ file }) {
     <div
       className={`flex aspect-square w-full cursor-pointer flex-col items-center justify-evenly pt-2 duration-200 ${selected._id === file._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       key={file._id}
-      ref={fileRef}
-      // onClick={handleClick}
-      // onDoubleClick={handleDoubleClick}
+      // ref={fileRef}
+      onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
     >
       {/* <LuFileText className="text-4xl text-[#d0d0d0] md:text-6xl" /> */}
       {isLoading ? (
