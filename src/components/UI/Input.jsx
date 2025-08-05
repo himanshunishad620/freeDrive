@@ -32,7 +32,7 @@ export default function Input({
           onClick={() => setShowPassword((pre) => !pre)}
           className="absolute top-[50%] right-3 translate-y-[-50%] transform cursor-pointer text-xl text-[#6a6a6a]"
         >
-          {!showPassword ? <BiSolidShow /> : <BiSolidHide />}
+          {showPassword ? <BiSolidShow /> : <BiSolidHide />}
         </div>
       ) : null}
     </div>

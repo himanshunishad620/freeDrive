@@ -24,7 +24,8 @@ export default function Records() {
             Total Space
           </p>
           <p className="text-md flex items-center gap-3 font-semibold text-[#363636] md:text-2xl">
-            {memory.value} {memory.unit} /<FaInfinity className="text-3xl" />
+            {memory.value} {memory.unit} /
+            <FaInfinity className="text-xl md:text-3xl" />
           </p>
           {/* <div className="mt-0 h-2.5 w-9/10 border-2 border-blue-500 bg-[#cfe6ff] md:mt-1 md:h-4 md:w-full">
             <div

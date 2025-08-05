@@ -13,15 +13,11 @@ import Contact from "../components/dashboard/Contact";
 // import Directory from "../components/dashboard/Directory";
 import { useAuth } from "../contexts/AuthContext";
 import FileManager from "../components/dashboard/FileManager";
+import PageLoader from "../components/UI/PageLoader";
 
 export default function AppRoutes() {
   const { isAuthenticated, loading, _id } = useAuth();
-  if (loading)
-    return (
-      <h1 className="text-center text-3xl">
-        Loading....,Server restarting, it might take few seconds for once.
-      </h1>
-    );
+  if (loading) return <PageLoader />;
   return (
     <Routes>
       <Route

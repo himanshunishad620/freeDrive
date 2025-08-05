@@ -47,9 +47,12 @@ import Button from "../../components/UI/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LightButton from "../../components/UI/LightButton";
+import { useAuth } from "../../contexts/AuthContext";
+import { TbShieldShare } from "react-icons/tb";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
   const handleLogout = async (e) => {
     setIsLoading(true);
@@ -122,7 +125,7 @@ const LandingPage = () => {
               label={"Go to Dashboard"}
               startIcon={<FiBarChart2 className="text-lg" />}
               onClick={() => navigate("/dashboard")}
-              isLoading={isLoading}
+              // isLoading={isLoading}
             />
             {/* <Button>HI</Button> */}
           </div>
@@ -142,13 +145,11 @@ const LandingPage = () => {
 
           <div className="rounded-xl bg-white p-8 shadow-md transition-shadow hover:shadow-lg">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
-              <FiShield className="text-xl text-indigo-600" />
+              <TbShieldShare className="text-xl text-indigo-600" />
             </div>
-            <h3 className="mb-3 text-xl font-semibold">
-              Military-Grade Security
-            </h3>
+            <h3 className="mb-3 text-xl font-semibold">Share Securely</h3>
             <p className="text-gray-600">
-              End-to-end encryption ensures your files are always protected.
+              Share access of your files without sharing your phone number.
             </p>
           </div>
 
