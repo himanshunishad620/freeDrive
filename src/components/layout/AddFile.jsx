@@ -6,6 +6,9 @@ import IconButton from "../UI/IconButton";
 import useFileUpload from "../../hooks/useFileUpload";
 import { useAddFileMutation } from "../../api/directoryApi";
 import { toast } from "react-toastify";
+import { AiOutlineFileUnknown } from "react-icons/ai";
+import { LuFileCheck2 } from "react-icons/lu";
+// import getFileType from "../../constant/getFileType";
 export default function AddFile({ handleAddFileToggle, _id }) {
   const { uploadFile, isLoading } = useFileUpload();
   const [addFile] = useAddFileMutation();
@@ -14,7 +17,7 @@ export default function AddFile({ handleAddFileToggle, _id }) {
   const [url, setUrl] = useState(null);
   const handleFileChange = (e) => {
     // const upload=e.target.files[0]
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     //     if (e?.target?.files[0]) return;
     setFile(e.target.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
@@ -24,7 +27,7 @@ export default function AddFile({ handleAddFileToggle, _id }) {
     e.preventDefault();
     try {
       const uploadedFile = await uploadFile(file);
-      console.log(uploadedFile);
+      // console.log(uploadedFile);
       const res = await addFile({
         fileDownloadId: uploadedFile.file_id,
         parentFolderId: _id,
@@ -32,7 +35,7 @@ export default function AddFile({ handleAddFileToggle, _id }) {
         fileSize: file.size,
         fileType: file.type,
       });
-      console.log(res);
+      // console.log(res.data.msg);
       handleAddFileToggle(false);
       toast.success("File Uploaded Successfuly!");
       // await uploadFile(file);
@@ -42,22 +45,26 @@ export default function AddFile({ handleAddFileToggle, _id }) {
       setFileUploadLoading(false);
     }
   };
+
   return (
     <div className="fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-black/40">
       <form
         onSubmit={handleFileUpload}
         className="relative w-90 bg-white px-10 py-5 md:w-100"
       >
-        {/* <MdCancel className="absolute top-[-10px] right-[-10px] rounded-full bg-white p-1 text-4xl" /> */}
-        {/* <div className="absolute top-2 right-2 rounded-full bg-white">
-          <IconButton icon={<MdCancel />} onClick={handleAddFileToggle} />
-        </div> */}
         <h1 className="mb-5 flex justify-between text-center text-2xl font-bold text-blue-500">
           Upload File{" "}
           <IconButton icon={<MdCancel />} onClick={handleAddFileToggle} />
         </h1>
         <label htmlFor="fileInput">
-          <div className="mb-5 flex aspect-square flex-1 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-gray-400 p-2 duration-200 hover:bg-[#f3f3f3]">
+          <div className="mb-5 flex aspect-square flex-1 cursor-pointer flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed border-gray-400 p-2 duration-200 hover:bg-[#f3f3f3]">
+            {file && (
+              <p className="text-md flex items-center font-medium text-[#c6c6c6]">
+                {" "}
+                <LuFileCheck2 className="text-4xl text-[#c6c6c6]" /> File
+                Uploaded
+              </p>
+            )}
             {!file && (
               <>
                 <MdOutlineUploadFile className="text-8xl text-[#c6c6c6]" />
@@ -66,32 +73,24 @@ export default function AddFile({ handleAddFileToggle, _id }) {
             )}
             {file?.type.startsWith("video/") && (
               <>
-                {/* <MdOutlineUploadFile className="text-8xl text-[#c6c6c6]" /> */}
-                <video
-                  src={url}
-                  controls
-                  //   width="400"
-                  className="h-2/3 rounded shadow"
-                />
+                <video src={url} controls className="h-2/3 rounded shadow" />
               </>
             )}
             {file?.type.startsWith("audio/") && (
               <>
                 <LuFileAudio className="text-8xl text-[#c6c6c6]" />
-                <audio
-                  src={url}
-                  controls
-                  //   width="400"
-                  className="w-4/5 rounded"
-                />
+                <audio src={url} controls className="w-4/5 rounded" />
               </>
             )}
             {file?.type.startsWith("image/") && (
               <>
-                {/* <MdOutlineUploadFile className="text-8xl text-[#c6c6c6]" /> */}
-                <img src={url} className="h-full w-full rounded shadow" />
+                <img
+                  src={url}
+                  className="aspect-square w-7/10 rounded shadow"
+                />
               </>
             )}
+
             {file?.type === "application/pdf" && (
               <iframe
                 src={url}
@@ -99,6 +98,17 @@ export default function AddFile({ handleAddFileToggle, _id }) {
                 className="h-2/3 w-full rounded border"
               />
             )}
+
+            {/* {file?.type === "application/" && (
+              <iframe
+                src={url}
+                title="PDF Preview"
+                className="h-2/3 w-full rounded border"
+              />
+            )} */}
+
+            {/* <AiOutlineFileUnknown className="text-4xl text-[#d0d0d0] md:text-6xl" /> */}
+            {/* {getFileType(file?.fileName.spilt(".").pop())} */}
           </div>
         </label>
         <Button

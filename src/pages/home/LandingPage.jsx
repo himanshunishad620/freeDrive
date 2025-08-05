@@ -1,9 +1,54 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/UI/Button";
-import axios from "axios";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import Button from "../../components/UI/Button";
+// import axios from "axios";
 
-export default function LandingPage() {
+// export default function LandingPage() {
+// const navigate = useNavigate();
+// const [isLoading, setIsLoading] = useState(false);
+// const handleLogout = async (e) => {
+//   setIsLoading(true);
+//   try {
+//     const res = await axios.get(
+//       "https://resumakebackend.onrender.com/api/auth/logout",
+//       {
+//         withCredentials: true,
+//       },
+//     );
+//     navigate(0);
+//     // console.log(res);
+//   } catch (error) {
+//     // console.log(error);
+//   } finally {
+//     setIsLoading(false);
+//   }
+// };
+//   return (
+//     <div className="flex h-screen w-full flex-col items-center justify-center gap-3">
+//       <p className="text-4xl">Welcome to Dashboard</p>
+//       <div className="w-60">
+//         <Button label={"Logout"} onClick={handleLogout} isLoading={isLoading} />
+//       </div>
+
+//       <button onClick={() => navigate("/dashboard")}>Dashboard</button>
+//     </div>
+//   );
+// }
+import React, { useState } from "react";
+import {
+  FiLogOut,
+  FiUpload,
+  FiHardDrive,
+  FiShield,
+  FiBarChart2,
+  FiUser,
+} from "react-icons/fi";
+import Button from "../../components/UI/Button";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import LightButton from "../../components/UI/LightButton";
+
+const LandingPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const handleLogout = async (e) => {
@@ -23,14 +68,124 @@ export default function LandingPage() {
       setIsLoading(false);
     }
   };
-  return (
-    <div className="flex h-screen w-full flex-col items-center justify-center gap-3">
-      <p className="text-4xl">Welcome to Dashboard</p>
-      <div className="w-60">
-        <Button label={"Logout"} onClick={handleLogout} isLoading={isLoading} />
-      </div>
 
-      <button onClick={() => navigate("/dashboard")}>Dashboard</button>
+  return (
+    // <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-blue-500/10">
+      {/* Header with Logout */}
+      <header className="flex items-center justify-between p-6">
+        <div className="flex items-center space-x-2">
+          <FiHardDrive className="text-2xl text-indigo-600" />
+          <span className="text-xl font-bold text-indigo-800">FreeDrive</span>
+        </div>
+        {/* <button
+          onClick={handleLogout}
+          className="flex items-center space-x-1 text-indigo-700 transition-colors hover:text-indigo-900"
+        >
+          <FiLogOut />
+          <span>Logout</span>
+        </button> */}
+        <div className="w-30">
+          <LightButton
+            label={"Logout"}
+            isLoading={isLoading}
+            onClick={handleLogout}
+            startIcon={<FiLogOut className="text-lg" />}
+          />
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <main className="container mx-auto px-6 py-16">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="mb-6 text-4xl font-bold text-gray-800 md:text-5xl">
+            Your <span className="text-indigo-600">Free</span> Cloud Storage
+            Solution
+          </h1>
+          <p className="mb-10 text-xl text-gray-600">
+            Secure, private, and completely free cloud storage with no hidden
+            limits. Store, share, and access your files from anywhere.
+          </p>
+
+          {/* Dashboard Action Button */}
+          {/* <button
+            onClick={goToDashboard}
+            className="transform rounded-full bg-indigo-600 px-8 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-indigo-700"
+          >
+            <div className="flex items-center justify-center space-x-2">
+              <FiBarChart2 className="text-lg" />
+              <span>Go to Dashboard</span>
+            </div>
+          </button> */}
+          <div className="m-auto w-50">
+            <Button
+              label={"Go to Dashboard"}
+              startIcon={<FiBarChart2 className="text-lg" />}
+              onClick={() => navigate("/dashboard")}
+              isLoading={isLoading}
+            />
+            {/* <Button>HI</Button> */}
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="mt-24 grid gap-8 md:grid-cols-3">
+          <div className="rounded-xl bg-white p-8 shadow-md transition-shadow hover:shadow-lg">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
+              <FiUpload className="text-xl text-indigo-600" />
+            </div>
+            <h3 className="mb-3 text-xl font-semibold">Unlimited Uploads</h3>
+            <p className="text-gray-600">
+              Store as many files as you need with our truly free storage model.
+            </p>
+          </div>
+
+          <div className="rounded-xl bg-white p-8 shadow-md transition-shadow hover:shadow-lg">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
+              <FiShield className="text-xl text-indigo-600" />
+            </div>
+            <h3 className="mb-3 text-xl font-semibold">
+              Military-Grade Security
+            </h3>
+            <p className="text-gray-600">
+              End-to-end encryption ensures your files are always protected.
+            </p>
+          </div>
+
+          <div className="rounded-xl bg-white p-8 shadow-md transition-shadow hover:shadow-lg">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100">
+              <FiUser className="text-xl text-indigo-600" />
+            </div>
+            <h3 className="mb-3 text-xl font-semibold">Private by Design</h3>
+            <p className="text-gray-600">
+              We never scan, analyze, or sell your data - unlike other "free"
+              services.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-24 border-t border-gray-200 bg-white py-8">
+        {/* <div className="container mx-auto px-6 text-center text-gray-500"> */}
+        <p className="text-center">
+          © {new Date().getFullYear()} FreeDrive. All rights reserved.
+        </p>
+        {/* <div className="mt-4 flex justify-center space-x-6">
+            <a href="#" className="hover:text-indigo-600">
+              Terms
+            </a>
+            <a href="#" className="hover:text-indigo-600">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-indigo-600">
+              Contact
+            </a>
+          </div> */}
+        {/* </div> */}
+      </footer>
     </div>
   );
-}
+};
+
+export default LandingPage;

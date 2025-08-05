@@ -9,7 +9,7 @@ const useFileUpload = () => {
       alert("Please select a file");
       return;
     }
-
+    // console.log(file);
     const formData = new FormData();
     formData.append(
       "botToken",
@@ -34,8 +34,10 @@ const useFileUpload = () => {
         },
       );
 
-      console.log(response.data);
-      return response.data.data.result.document;
+      // console.log(response.data.data.result.audio);
+      return file.type.startsWith("audio/")
+        ? response.data.data.result.audio
+        : response.data.data.result.document;
       //       setStatus("File uploaded successfully.");
     } catch (error) {
       console.error(error);

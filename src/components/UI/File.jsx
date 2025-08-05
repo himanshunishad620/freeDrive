@@ -18,6 +18,7 @@ import {
 import { useFetchFileUrlQuery } from "../../api/fileApi";
 import { useRef, useState } from "react";
 import useDoubleClick from "use-double-click";
+import FIleAndFolderSpinner from "./FIleAndFolderSpinner";
 
 function getFileType(extension) {
   switch (extension) {
@@ -113,30 +114,10 @@ export default function File({ file }) {
   const extension = file.fileName.split(".").pop().toLowerCase();
   const { select, selected, setDisabled } = useBreadcrumbs();
   const [previousSelect, setPreviousSelect] = useState({});
-  console.log(file.fileDownloadId);
+  // console.log(file.fileDownloadId);
   const { data, isLoading } = useFetchFileUrlQuery(file.fileDownloadId);
-  console.log(file || null);
+  // console.log(file || null);
 
-  // const fileRef = useRef();
-
-  // useDoubleClick({
-  //   onSingleClick: (e) => {
-  //     select({
-  //       _id: file._id,
-  //       fileName: fileArr[0],
-  //       type: "file",
-  //       fileSize: file.fileSize,
-  //       ext: "." + `${fileArr[fileArr.length - 1]}`,
-  //       fileDownloadId: file.fileDownloadId,
-  //     });
-  //     setDisabled(false);
-  //   },
-  //   onDoubleClick: (e) => {
-  //     window.open(data.file_path, "_blank", "noopener,noreferrer");
-  //   },
-  //   ref: fileRef,
-  //   latency: 250,
-  // });
   const handleClick = () => {
     const fileArr = file.fileName.split(".");
     setPreviousSelect({
@@ -172,7 +153,7 @@ export default function File({ file }) {
 
   return (
     <div
-      className={`flex aspect-square w-full cursor-pointer flex-col items-center justify-evenly pt-2 duration-200 ${selected._id === file._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
+      className={`relative flex aspect-square w-full cursor-pointer flex-col items-center justify-evenly pt-2 duration-200 ${selected._id === file._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       key={file._id}
       // ref={fileRef}
       onClick={handleClick}
@@ -180,7 +161,7 @@ export default function File({ file }) {
     >
       {/* <LuFileText className="text-4xl text-[#d0d0d0] md:text-6xl" /> */}
       {isLoading ? (
-        <FaSpinner className="animate-spin" />
+        <FIleAndFolderSpinner />
       ) : file.fileType.startsWith("image/") ? (
         <img className="aspect-square w-2/3" src={data.file_path} alt="" />
       ) : (
