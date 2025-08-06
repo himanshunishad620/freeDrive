@@ -73,22 +73,40 @@ const About = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href=""
+                href={`mailto:himanshunishad620@gmail.com`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
               >
-                <IconButton notHover={true} icon={<MdOutlineMailOutline />} />
+                <IconButton
+                  type={"button"}
+                  notHover={true}
+                  icon={<MdOutlineMailOutline />}
+                />
               </a>
-              <a
+              {/* <a
                 href=""
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
               >
                 <IconButton notHover={true} icon={<RiGithubLine />} />
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href=""
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
               >
                 <IconButton notHover={true} icon={<RiLinkedinBoxLine />} />
+              </a> */}
+              <a
+                href="https://www.linkedin.com/in/himanshu-nishad-855a01291"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
+              >
+                <IconButton
+                  type={"button"}
+                  notHover={true}
+                  icon={<RiLinkedinBoxLine />}
+                />
               </a>
             </div>
           </div>

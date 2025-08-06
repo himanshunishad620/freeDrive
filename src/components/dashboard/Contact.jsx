@@ -103,22 +103,34 @@ export default function Contact() {
           </div>
           <div className="mt-5 ml-[-40px] flex justify-center gap-3">
             <a
-              href=""
+              href={`mailto:himanshunishad620@gmail.com`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
             >
-              <IconButton notHover={true} icon={<MdOutlineMailOutline />} />
+              <IconButton
+                type={"button"}
+                notHover={true}
+                icon={<MdOutlineMailOutline />}
+              />
             </a>
-            <a
+            {/* <a
               href=""
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
             >
               <IconButton notHover={true} icon={<RiGithubLine />} />
-            </a>
+            </a> */}
             <a
-              href=""
+              href="https://www.linkedin.com/in/himanshu-nishad-855a01291"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
             >
-              <IconButton notHover={true} icon={<RiLinkedinBoxLine />} />
+              <IconButton
+                type={"button"}
+                notHover={true}
+                icon={<RiLinkedinBoxLine />}
+              />
             </a>
           </div>
         </form>
