@@ -1,14 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import appConfig from "../constant/appConfig";
 
 export const fileApi = createApi({
   reducerPath: "fileApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://unlimited-cloud-storage.p.rapidapi.com",
+    baseUrl: appConfig.rapidApiBaseUrl,
     prepareHeaders: (headers) => {
-      headers.set(
-        "x-rapidapi-key",
-        "fe6acbab03mshdb6495c0eea0e81p1f538cjsn5786abddcaef",
-      );
+      headers.set("x-rapidapi-key", appConfig.rapidApiKey);
       headers.set("x-rapidapi-host", "unlimited-cloud-storage.p.rapidapi.com");
       return headers;
     },

@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import axios from "axios";
+import appConfig from "../constant/appConfig";
 
 const AuthContext = createContext();
 
@@ -18,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://resumakebackend.onrender.com/api/auth/verifyToken",
+        appConfig.apiBaseUrl + "api/auth/verifyToken",
         { withCredentials: true },
       );
       // console.log(res.data);

@@ -11,7 +11,7 @@ import {
 import Records from "../layout/Records";
 import RootDirectory from "../layout/FileContainer";
 import FileContainer from "../layout/FileContainer";
-import BreadcrumbProvider from "../../contexts/BreadcrumbsContext";
+// import BreadcrumbProvider from "../../contexts/BreadcrumbsContext";
 
 import FileManagerHeader from "../UI/FileManagerHeader";
 
@@ -63,9 +63,9 @@ export default function FileManager() {
     <div className="flex h-full w-full flex-col bg-[#f2f2f2]">
       <FileManagerHeader />
       <Records />
-      <BreadcrumbProvider>
-        <FileContainer />
-      </BreadcrumbProvider>
+      {/* <BreadcrumbProvider> */}
+      <FileContainer />
+      {/* </BreadcrumbProvider> */}
     </div>
   );
 }

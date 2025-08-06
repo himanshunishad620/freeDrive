@@ -1,11 +1,12 @@
 // src/features/api/authApi.js
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import appConfig from "../constant/appConfig";
 
 export const directoryApi = createApi({
   reducerPath: "directoryApi",
   tagTypes: ["folders"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://resumakebackend.onrender.com/",
+    baseUrl: appConfig.apiBaseUrl,
     // baseUrl: "http://localhost:4000/",
     credentials: "include", // your backend URL
   }),

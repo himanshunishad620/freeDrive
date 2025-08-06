@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useBreadcrumbs } from "../contexts/BreadcrumbsContext";
+import { useState } from "react";
 import appConfig from "../constant/appConfig";
 import { toast } from "react-toastify";
 
-export default function useFileDownload() {
+export default function useResumeDownload() {
   const [isLoading, setIsLoading] = useState(false);
-  const { selected } = useBreadcrumbs();
-  async function downloadFile(fileId) {
+  //   const { selected } = useBreadcrumbs();
+  async function downloadResume() {
+    const fileId =
+      "BQACAgQAAyEGAASE7dU9AAITOGiSrjoc3USmfcuYB6A4kg01yVeNAAIwGQACEhWZUIdYAUEhmSd3NgQ";
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -26,7 +27,7 @@ export default function useFileDownload() {
         appConfig.apiBaseUrl +
         `api/directory/downloadFileByUrl?url=${encodeURIComponent(
           url,
-        )}&filename=${selected.fileName + selected.ext}`;
+        )}&filename=Himanshu_Nishad_MERN_Stack_Developer.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -39,5 +40,5 @@ export default function useFileDownload() {
       setIsLoading(false);
     }
   }
-  return { downloadFile, isLoading };
+  return { downloadResume, isLoading };
 }

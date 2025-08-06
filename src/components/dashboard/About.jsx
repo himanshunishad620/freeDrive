@@ -1,20 +1,26 @@
-import { FaLock, FaUserShield } from "react-icons/fa";
+import { TbBrandRedux } from "react-icons/tb";
+import { FiPackage } from "react-icons/fi";
+import { FaLock, FaUserShield, FaReact, FaNodeJs } from "react-icons/fa";
 import AboutHeader from "../UI/AboutHeader";
 import LightButton from "../UI/LightButton";
 import { RiGithubLine, RiLinkedinBoxLine } from "react-icons/ri";
 import { MdOutlineMailOutline } from "react-icons/md";
 import IconButton from "../UI/IconButton";
-import { FaReact, FaNodeJs } from "react-icons/fa";
+import dp from "../../assets/dp.jpg";
 import {
+  SiJsonwebtokens,
+  SiReactrouter,
+  SiNodemon,
   SiAxios,
   SiMongodb,
   SiTailwindcss,
   SiExpress,
   SiRedis,
 } from "react-icons/si";
-import { FiPackage } from "react-icons/fi";
+import useResumeDownload from "../../hooks/useResumeDownload";
 
 const About = () => {
+  const { downloadResume, isLoading } = useResumeDownload();
   const techStack = [
     { name: "React", icon: <FaReact className="text-xl" /> },
     { name: "Node.js", icon: <FaNodeJs className="text-xl" /> },
@@ -24,6 +30,10 @@ const About = () => {
     { name: "Express", icon: <SiExpress className="text-xl" /> },
     { name: "Redis", icon: <SiRedis className="text-xl" /> },
     { name: "Axios", icon: <SiAxios className="text-xl" /> },
+    { name: "JsonWebToken", icon: <SiJsonwebtokens className="text-xl" /> },
+    { name: "React Router", icon: <SiReactrouter className="text-xl" /> },
+    { name: "Redux Tookit", icon: <TbBrandRedux className="text-xl" /> },
+    { name: "Nodemon", icon: <SiNodemon className="text-xl" /> },
   ];
   return (
     <div className="relative ml-0 min-h-screen bg-white md:ml-3">
@@ -45,7 +55,7 @@ const About = () => {
           <div className="w-full md:w-1/3">
             <div className="rounded-full bg-gradient-to-t from-[#037bfc] to-[#8bc3ff] p-2 shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                src={dp}
                 alt="Profile"
                 className="h-auto w-full rounded-full"
               />
@@ -144,7 +154,11 @@ const About = () => {
             solutions.
           </p>
           <div className="m-auto w-70">
-            <LightButton label={"Download Resume"} />
+            <LightButton
+              label={"Download Resume"}
+              onClick={downloadResume}
+              isLoading={isLoading}
+            />
           </div>
         </section>
       </main>

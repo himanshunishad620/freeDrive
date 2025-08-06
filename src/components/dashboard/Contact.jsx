@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../UI/Input";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -11,9 +11,39 @@ import { RiLinkedinBoxLine, RiGithubLine } from "react-icons/ri";
 // import { FiGithub } from "react-icons/fi";
 // import DashboardHeader from "../UI/FileManagerHeader";
 import { useNavigate } from "react-router-dom";
+import useHandleForm from "../../hooks/useHandleForm";
+import { toast } from "react-toastify";
+import { useContactUsMutation } from "../../api/otherApi";
 
 export default function Contact() {
+  const { value, handleChange, resetForm } = useHandleForm({
+    name: "",
+    email: "",
+    msg: "",
+  });
+  console.log(value);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [contactUs, { isLoading }] = useContactUsMutation();
   const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await contactUs(value).unwrap();
+      toast.success("Message Sent Successfuly!");
+      resetForm();
+      console.log(res);
+    } catch (error) {
+      // console.log(error);
+      toast.error("Internal Server Error!");
+    }
+    // setIsLoading(true);
+    // e.preventDefault();
+    // // for (var i = 0; i < 100000000000; i++) {}
+    // // setTimeout(() => toast.success("Message Sent Successfully!"), 1000);
+    // toast.success("Message Sent Successfully!");
+    // resetForm();
+    // setIsLoading(false);
+  };
   return (
     <div className="relative h-full w-full">
       <h1
@@ -27,6 +57,7 @@ export default function Contact() {
       <div className="relative flex h-full w-full">
         <form
           method="POST"
+          onSubmit={handleSubmit}
           className="items-left relative ml-0 flex w-full flex-col justify-start gap-2 bg-white pt-20 pl-10 md:ml-3 md:w-1/2 md:justify-center md:pt-0"
         >
           <h1 className="text-4xl font-semibold text-blue-500">
@@ -50,19 +81,25 @@ export default function Contact() {
             name={"name"}
             placeholder={"Enter Name"}
             icon={<FaRegUser />}
+            onChange={handleChange}
+            value={value.name}
+            required={true}
           />
           <Input
             type="email"
             name={"email"}
             placeholder={"Enter email"}
             icon={<MdOutlineMailOutline />}
+            onChange={handleChange}
+            required={true}
+            value={value.email}
           />
           {/* </div> */}
           <div className="">
-            <TextArea />
+            <TextArea required onChange={handleChange} value={value.msg} />
           </div>
           <div className="w-40">
-            <Button type={"submit"} label={"Send"} />
+            <Button type={"submit"} label={"Send"} isLoading={isLoading} />
           </div>
           <div className="mt-5 ml-[-40px] flex justify-center gap-3">
             <a

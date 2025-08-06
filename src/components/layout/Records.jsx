@@ -4,7 +4,7 @@ import { GrStorage } from "react-icons/gr";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaRegFolderClosed } from "react-icons/fa6";
 import { useReadDirectoryRecordQuery } from "../../api/directoryApi";
-import formatBytesSplit from "../../constant/formatBytes";
+import formatBytesSplit from "../../services/formatBytes";
 import { FaInfinity } from "react-icons/fa6";
 
 export default function Records() {

@@ -1,10 +1,11 @@
 // src/features/api/authApi.js
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import appConfig from "../constant/appConfig";
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://resumakebackend.onrender.com/",
+    baseUrl: appConfig.apiBaseUrl,
     credentials: "include", // your backend URL
   }),
   endpoints: (builder) => ({

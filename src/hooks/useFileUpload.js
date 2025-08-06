@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import appConfig from "../constant/appConfig";
 
 const useFileUpload = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,10 +12,7 @@ const useFileUpload = () => {
     }
     // console.log(file);
     const formData = new FormData();
-    formData.append(
-      "botToken",
-      "7147572018:AAF_uX7c5FbA_V5DoglL1AuQbtHTWnix1Yg",
-    );
+    formData.append("botToken", appConfig.rapidApiBotToken);
     formData.append("document", file);
     formData.append("chatId", "-1002230179133");
 
@@ -22,12 +20,11 @@ const useFileUpload = () => {
 
     try {
       const response = await axios.post(
-        "https://unlimited-cloud-storage.p.rapidapi.com/rapidapi/telegram/upload.php",
+        appConfig.rapidApiBaseUrl + "rapidapi/telegram/upload.php",
         formData,
         {
           headers: {
-            "x-rapidapi-key":
-              "fe6acbab03mshdb6495c0eea0e81p1f538cjsn5786abddcaef",
+            "x-rapidapi-key": appConfig.rapidApiKey,
             "x-rapidapi-host": "unlimited-cloud-storage.p.rapidapi.com",
             "Content-Type": "multipart/form-data",
           },
