@@ -33,7 +33,9 @@
 
 ## 📸 Screenshots
 
-> _You can add screenshots here for login, file upload, preview, folder view, etc._
+![Register Page](./assets/Register.png)
+![Home Page](./assets/Home.png)
+![Dashboard Page](./assets/Dashboard.png)
 
 ---
 
@@ -42,7 +44,7 @@
 ### 📦 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/free-drive.git
+git clone https://github.com/himanshunishad620/free-drive.git
 cd free-drive
 ```
 
@@ -79,7 +81,6 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 **Himanshu Nishad**  
 📧 himanshunishad620@gmail.com  
-🌐 [Portfolio](https://your-portfolio-link.com)  
 🔗 [LinkedIn](https://linkedin.com/in/himanshu-nishad-855a01291)
 
 ---
