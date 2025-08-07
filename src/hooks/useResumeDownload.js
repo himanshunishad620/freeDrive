@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 
 export default function useResumeDownload() {
   const [isLoading, setIsLoading] = useState(false);
-  //   const { selected } = useBreadcrumbs();
   async function downloadResume() {
     const fileId =
       "BQACAgQAAyEGAASE7dU9AAITOGiSrjoc3USmfcuYB6A4kg01yVeNAAIwGQACEhWZUIdYAUEhmSd3NgQ";

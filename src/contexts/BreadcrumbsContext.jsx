@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 const BreadcrumbsContext = createContext();
 
 export default function BreadcrumbProvider({ children }) {
@@ -12,10 +12,8 @@ export default function BreadcrumbProvider({ children }) {
     setVisitedFolders((pre) => [...pre, `${folderName + ">"}`]);
   };
   const removerVisitedFolder = (folder) => {
-    // console.log(folder);
     setVisitedFolders((pre) => pre.filter((i) => i !== folder));
   };
-  // console.log(selected);
 
   return (
     <BreadcrumbsContext.Provider

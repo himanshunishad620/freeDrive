@@ -1,4 +1,3 @@
-import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ProtectedRoute from "./ProtectedRoute";
@@ -7,9 +6,10 @@ import LandingPage from "../pages/home/LandingPage";
 import DasboardLayout from "../components/layout/DasboardLayout";
 import About from "../components/dashboard/About";
 import Contact from "../components/dashboard/Contact";
-import { useAuth } from "../contexts/AuthContext";
 import FileManager from "../components/dashboard/FileManager";
 import PageLoader from "../components/UI/PageLoader";
+import { useAuth } from "../contexts/AuthContext";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 export default function AppRoutes() {
   const { isAuthenticated, loading, _id } = useAuth();
@@ -26,9 +26,7 @@ export default function AppRoutes() {
             index
             element={<Navigate to={"fileManager"} state={{ _id }} replace />}
           />
-          {/* <Route path="storage" element={<Storage />} /> */}
           <Route path="fileManager" element={<FileManager />} />
-          {/* <Route path="settings" element={<Setting />} /> */}
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>

@@ -14,25 +14,21 @@ export default function Register() {
   const [sendOtp, { isLoading: otpLoader }] = useSendOtpMutation();
   const [register, { isLoading: registerLoader }] = useRegisterMutation();
   const navigate = useNavigate();
-  const { value, handleChange, resetForm } = useHandleForm({
-    // email: "kbnwdfmvebqslhwqqt@nesopf.com",
-    email: "", //"biwibi3787@dariolo.com",
-    password: "", // "Himan@6405",
-    confirmPassword: "", //"Himan@6405",
+  const { value, handleChange } = useHandleForm({
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const handleOtpChange = (value) => {
     setOtp(value);
-    // console.log("OTP:", value);
   };
   const generateOtp = async () => {
     if (!emailRegex.test(value.email))
       return console.log("Please Enter valid email!");
     const res = await sendOtp({ email: value.email });
     console.log(res);
-    // if (!res.ok) console.log(res);
     if (res?.data?.msg) toast.success(res.data.msg);
     else toast.error(res.error.data.msg);
-    // alert(res?.data?.msg || res?.error?.data?.msg);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();

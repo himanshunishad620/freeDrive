@@ -1,3 +1,5 @@
+import axios from "axios";
+import appConfig from "../constant/appConfig";
 import {
   createContext,
   useCallback,
@@ -5,13 +7,11 @@ import {
   useEffect,
   useState,
 } from "react";
-import axios from "axios";
-import appConfig from "../constant/appConfig";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // null means loading
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [_id, set_Id] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,13 +22,10 @@ export const AuthProvider = ({ children }) => {
         appConfig.apiBaseUrl + "api/auth/verifyToken",
         { withCredentials: true },
       );
-      // console.log(res.data);
       setIsAuthenticated(true);
       set_Id(res.data._id);
-      // setUser(res.data.user);
     } catch (err) {
       setIsAuthenticated(false);
-      //       setUser(null);
       set_Id(null);
     } finally {
       setLoading(false);
@@ -36,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    verifyAuth(); // Run once on mount
+    verifyAuth();
   }, []);
   return (
     <AuthContext.Provider value={{ isAuthenticated, verifyAuth, loading, _id }}>
