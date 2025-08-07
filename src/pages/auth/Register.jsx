@@ -24,9 +24,8 @@ export default function Register() {
   };
   const generateOtp = async () => {
     if (!emailRegex.test(value.email))
-      return console.log("Please Enter valid email!");
+      return toast.error("Please Enter valid email!");
     const res = await sendOtp({ email: value.email });
-    console.log(res);
     if (res?.data?.msg) toast.success(res.data.msg);
     else toast.error(res.error.data.msg);
   };
