@@ -44,7 +44,7 @@
 ### 📦 Clone the repository
 
 ```bash
-git clone https://github.com/himanshunishad620/free-drive.git
+git clone https://github.com/himanshunishad620/freeDive.git
 cd free-drive
 ```
 
