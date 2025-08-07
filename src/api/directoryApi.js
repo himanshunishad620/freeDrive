@@ -1,4 +1,3 @@
-// src/features/api/authApi.js
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import appConfig from "../constant/appConfig";
 
@@ -7,17 +6,16 @@ export const directoryApi = createApi({
   tagTypes: ["folders"],
   baseQuery: fetchBaseQuery({
     baseUrl: appConfig.apiBaseUrl,
-    // baseUrl: "http://localhost:4000/",
-    credentials: "include", // your backend URL
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     readDirectory: builder.query({
       query: (id) => `api/directory/readFolder/${id}`,
-      providesTags: ["folders"], // <-- route param
+      providesTags: ["folders"],
     }),
     readDirectoryRecord: builder.query({
       query: () => `api/directory/readDirectoryRecord`,
-      providesTags: ["records"], // <-- route param
+      providesTags: ["records"],
     }),
     addFile: builder.mutation({
       query: (file) => ({

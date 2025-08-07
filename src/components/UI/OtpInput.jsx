@@ -1,4 +1,3 @@
-// src/components/OtpInput.jsx
 import React, { useRef } from "react";
 
 const OtpInput = ({ length = 6, onChange }) => {

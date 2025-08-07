@@ -1,7 +1,5 @@
-import React from "react";
-import Input from "./Input";
-
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import IconButton from "./IconButton";
+import useFileDownload from "../../hooks/useFileDownload";
 import { FaArrowLeft } from "react-icons/fa6";
 import { RiFileDownloadLine } from "react-icons/ri";
 import {
@@ -9,13 +7,9 @@ import {
   RiFileAddLine,
   RiFolderAddLine,
 } from "react-icons/ri";
-import { AiOutlineFolderAdd } from "react-icons/ai";
 import { BiRename } from "react-icons/bi";
-import { MdOutlineAddBox } from "react-icons/md";
-import IconButton from "./IconButton";
 import { useNavigate } from "react-router-dom";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
-import useFileDownload from "../../hooks/useFileDownload";
 
 export default function FileControls({
   handleAddFileToggle,
@@ -33,14 +27,11 @@ export default function FileControls({
     selected,
   } = useBreadcrumbs();
   const { downloadFile, isLoading } = useFileDownload();
-  // console.log(visitedFolders);
-  // console.log(selected);
   return (
     <div className="items-left sticky top-0 left-0 z-50 flex w-full flex-col-reverse justify-between bg-white p-2 shadow-md md:flex-row md:items-center">
       <div className="my-2 flex items-center gap-3 md:my-0 md:gap-2 md:pr-0">
         <IconButton
           icon={<FaArrowLeft />}
-          // disabled={visitedFolders.length < 2}
           onClick={() => {
             select("");
             setDisabled(true);

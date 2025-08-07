@@ -1,17 +1,14 @@
-import React, { useState } from "react";
 import Input from "../UI/Input";
-import { FaRegUser } from "react-icons/fa";
-import { MdOutlineMailOutline } from "react-icons/md";
-import { FaArrowLeft } from "react-icons/fa6";
 import Button from "../UI/Button";
 import TextArea from "../UI/TextArea";
 import storage from "./../../assets/storagee.png";
 import IconButton from "../UI/IconButton";
-import { RiLinkedinBoxLine, RiGithubLine } from "react-icons/ri";
-// import { FiGithub } from "react-icons/fi";
-// import DashboardHeader from "../UI/FileManagerHeader";
-import { useNavigate } from "react-router-dom";
 import useHandleForm from "../../hooks/useHandleForm";
+import { FaRegUser } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa6";
+import { RiLinkedinBoxLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useContactUsMutation } from "../../api/otherApi";
 
@@ -22,7 +19,6 @@ export default function Contact() {
     msg: "",
   });
   console.log(value);
-  // const [isLoading, setIsLoading] = useState(false);
   const [contactUs, { isLoading }] = useContactUsMutation();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -33,23 +29,14 @@ export default function Contact() {
       resetForm();
       console.log(res);
     } catch (error) {
-      // console.log(error);
       toast.error("Internal Server Error!");
     }
-    // setIsLoading(true);
-    // e.preventDefault();
-    // // for (var i = 0; i < 100000000000; i++) {}
-    // // setTimeout(() => toast.success("Message Sent Successfully!"), 1000);
-    // toast.success("Message Sent Successfully!");
-    // resetForm();
-    // setIsLoading(false);
   };
   return (
     <div className="relative h-full w-full">
       <h1
         onClick={() => navigate(-1)}
         className="absolute top-0 left-0 z-10 flex items-center p-3 pl-6 text-2xl font-semibold text-[#5b5b5b]"
-        // className="absolute top-0 left-0 z-10 flex items-center px-3 pt-3 text-2xl font-semibold text-[#5b5b5b]"
       >
         <IconButton type="button" icon={<FaArrowLeft />} />
         Contact Us
@@ -71,11 +58,6 @@ export default function Contact() {
             serve you better. Fill out the form or contact us directly using the
             information below.
           </p>
-          {/* <div className="flex"> */}
-
-          {/* <div className="absolute top-0 left-0">
-          <DashboardHeader />
-        </div> */}
           <Input
             type="text"
             name={"name"}
@@ -94,7 +76,6 @@ export default function Contact() {
             required={true}
             value={value.email}
           />
-          {/* </div> */}
           <div className="">
             <TextArea required onChange={handleChange} value={value.msg} />
           </div>

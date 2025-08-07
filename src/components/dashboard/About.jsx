@@ -1,12 +1,12 @@
+import LightButton from "../UI/LightButton";
+import AboutHeader from "../UI/AboutHeader";
+import IconButton from "../UI/IconButton";
+import dp from "../../assets/dp.jpg";
 import { TbBrandRedux } from "react-icons/tb";
 import { FiPackage } from "react-icons/fi";
 import { FaLock, FaUserShield, FaReact, FaNodeJs } from "react-icons/fa";
-import AboutHeader from "../UI/AboutHeader";
-import LightButton from "../UI/LightButton";
-import { RiGithubLine, RiLinkedinBoxLine } from "react-icons/ri";
+import { RiLinkedinBoxLine } from "react-icons/ri";
 import { MdOutlineMailOutline } from "react-icons/md";
-import IconButton from "../UI/IconButton";
-import dp from "../../assets/dp.jpg";
 import {
   SiJsonwebtokens,
   SiReactrouter,
@@ -90,12 +90,7 @@ const About = () => {
               >
                 <IconButton notHover={true} icon={<RiGithubLine />} />
               </a> */}
-              {/* <a
-                href=""
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#e6effa] md:h-auto md:w-auto md:bg-white"
-              >
-                <IconButton notHover={true} icon={<RiLinkedinBoxLine />} />
-              </a> */}
+
               <a
                 href="https://www.linkedin.com/in/himanshu-nishad-855a01291"
                 target="_blank"

@@ -16,7 +16,7 @@ export const fileApi = createApi({
       query: (fileId) => ({
         url: `/rapidapi/telegram/download.php`,
         method: "GET",
-        params: { fileId }, // same as options.params
+        params: { fileId },
       }),
     }),
   }),

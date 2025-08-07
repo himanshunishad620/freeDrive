@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function TextArea({ onChange, value, required = true }) {
   return (
     <textarea

@@ -1,36 +1,31 @@
-import { useState } from "react";
-import { useLoginMutation } from "../../api/authApi";
-import google from "../../assets/google.svg";
-import facebook from "../../assets/facebook.svg";
-import { Link, useNavigate } from "react-router-dom";
-import useHandleForm from "../../hooks/useHandleForm";
-import react from "../../assets/react.svg";
-import { HiOutlineMail } from "react-icons/hi";
-import Input from "../../components/UI/Input";
-import { RiLockPasswordLine } from "react-icons/ri";
 import Button from "../../components/UI/Button";
 import Separator from "../../components/UI/Separator";
 import SignUpButton from "../../components/UI/SignUpButton";
+import google from "../../assets/google.svg";
+import facebook from "../../assets/facebook.svg";
+import Input from "../../components/UI/Input";
+import useHandleForm from "../../hooks/useHandleForm";
+import { useLoginMutation } from "../../api/authApi";
+import { Link, useNavigate } from "react-router-dom";
+import { HiOutlineMail } from "react-icons/hi";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 export default function Login() {
   const [Login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
-  const { value, handleChange, resetForm } = useHandleForm({
-    // email: "ylnfteopltxnwmiaek@nespj.com", //"himanshunishad6@gmail.com",
-    // password: "Himan@6405", //"Himan@6405",
+  const { value, handleChange } = useHandleForm({
+    email: "ylnfteopltxnwmiaek@nespj.com",
+    password: "Himan@6405",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await Login(value).unwrap();
-      // console.log(res.msg);
       toast.success(res.msg);
       navigate(0);
-      // setTimeout(() => navigate(0), [1000]);
     } catch (error) {
       toast.error(error.data.msg);
-      // console.log(error.data.msg);
     }
   };
   return (
@@ -62,9 +57,6 @@ export default function Login() {
             onChange={handleChange}
             required={true}
           />
-          {/* <Link className="m-[-7px] px-3 text-right text-[13px] font-medium text-blue-500 duration-200 hover:text-[#8bc3ff]">
-            Forget password?
-          </Link> */}
           <p className="m-[-7px] text-right text-[13px] font-medium text-[#969AB8]">
             <Link className="px-3 font-medium text-blue-500 duration-200 hover:text-[#8bc3ff]">
               Forget Password?
@@ -85,7 +77,6 @@ export default function Login() {
           </Link>
         </p>
       </div>
-      {/* <img className="w-1/2" src={react} alt="" /> */}
     </div>
   );
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Separator() {
   return (
     <div className="my-3 flex w-full items-center gap-2">

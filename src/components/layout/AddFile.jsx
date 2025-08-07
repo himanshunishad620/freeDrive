@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { MdOutlineUploadFile, MdCancel } from "react-icons/md";
-import { LuFileAudio } from "react-icons/lu";
 import Button from "../UI/Button";
 import IconButton from "../UI/IconButton";
 import useFileUpload from "../../hooks/useFileUpload";
+import { useState } from "react";
+import { MdOutlineUploadFile, MdCancel } from "react-icons/md";
+import { LuFileAudio } from "react-icons/lu";
 import { useAddFileMutation } from "../../api/directoryApi";
 import { toast } from "react-toastify";
-import { AiOutlineFileUnknown } from "react-icons/ai";
 import { LuFileCheck2 } from "react-icons/lu";
-// import getFileType from "../../constant/getFileType";
+
 export default function AddFile({ handleAddFileToggle, _id }) {
   const { uploadFile, isLoading } = useFileUpload();
   const [addFile] = useAddFileMutation();
@@ -16,9 +15,6 @@ export default function AddFile({ handleAddFileToggle, _id }) {
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
   const [url, setUrl] = useState(null);
   const handleFileChange = (e) => {
-    // const upload=e.target.files[0]
-    // console.log(e.target.files[0]);
-    //     if (e?.target?.files[0]) return;
     setFile(e.target.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
   };
@@ -27,18 +23,15 @@ export default function AddFile({ handleAddFileToggle, _id }) {
     e.preventDefault();
     try {
       const uploadedFile = await uploadFile(file);
-      // console.log(uploadedFile);
-      const res = await addFile({
+      await addFile({
         fileDownloadId: uploadedFile.file_id,
         parentFolderId: _id,
         fileName: file.name,
         fileSize: file.size,
         fileType: file.type,
       });
-      // console.log(res.data.msg);
       handleAddFileToggle(false);
       toast.success("File Uploaded Successfuly!");
-      // await uploadFile(file);
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -99,17 +92,6 @@ export default function AddFile({ handleAddFileToggle, _id }) {
                 className="h-2/3 w-full rounded border"
               />
             )}
-
-            {/* {file?.type === "application/" && (
-              <iframe
-                src={url}
-                title="PDF Preview"
-                className="h-2/3 w-full rounded border"
-              />
-            )} */}
-
-            {/* <AiOutlineFileUnknown className="text-4xl text-[#d0d0d0] md:text-6xl" /> */}
-            {/* {getFileType(file?.fileName.spilt(".").pop())} */}
           </div>
         </label>
         <Button
@@ -123,75 +105,8 @@ export default function AddFile({ handleAddFileToggle, _id }) {
           type="file"
           className="hidden"
           required={true}
-          // disabled={true}
         />
       </form>
     </div>
   );
 }
-// import React, { useState, useEffect } from "react";
-
-// export default function FilePreview() {
-//   const [file, setFile] = useState(null);
-//   const [preview, setPreview] = useState(null);
-
-//   const handleFileChange = (e) => {
-//     const uploadedFile = e.target.files[0];
-//     if (!uploadedFile) return;
-//     setFile(uploadedFile);
-
-//     // Create preview URL
-//     const previewURL = URL.createObjectURL(uploadedFile);
-//     setPreview(previewURL);
-//   };
-
-//   // Cleanup preview URL on unmount
-//   useEffect(() => {
-//     return () => {
-//       if (preview) URL.revokeObjectURL(preview);
-//     };
-//   }, [preview]);
-
-//   const renderPreview = () => {
-//     if (!file) return null;
-
-//     if (file.type.startsWith("image/")) {
-//       return (
-//         <img
-//           src={preview}
-//           alt="Preview"
-//           className="max-w-sm rounded-md shadow"
-//         />
-//       );
-//     }
-//     if (file.type === "application/pdf") {
-//       return (
-//         <iframe
-//           src={preview}
-//           title="PDF Preview"
-//           width="100%"
-//           height="500"
-//           className="rounded border"
-//         />
-//       );
-//     }
-//     if (file.type.startsWith("video/")) {
-//       return (
-//         <video src={preview} controls width="400" className="rounded shadow" />
-//       );
-//     }
-//     return (
-//       <p className="text-gray-600">
-//         File selected: <strong>{file.name}</strong> (No preview available)
-//       </p>
-//     );
-//   };
-
-//   return (
-//     <div className="space-y-4 p-6">
-//       <h2 className="text-xl font-semibold">Upload & Preview File</h2>
-//       <input type="file" onChange={handleFileChange} className="block" />
-//       {renderPreview()}
-//     </div>
-//   );
-// }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 
 export default function Input({

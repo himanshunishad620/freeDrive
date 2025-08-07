@@ -1,31 +1,26 @@
 import FileControls from "../UI/FileControls";
-import { useLocation } from "react-router-dom";
-import { useReadDirectoryQuery } from "../../api/directoryApi";
-import Folder from "../UI/Folder";
 import File from "../UI/File";
 import Spinner from "../UI/Spinner";
-// import FileUploader from "./AddFile";
-import { useState } from "react";
+import Folder from "../UI/Folder";
 import AddFile from "./AddFile";
 import CreateFolder from "./CreateFolder";
 import DeleteFileandFolder from "./DeleteFileandFolder";
 import UpdateFolderAndFileName from "./UpdateFolderAndFileName";
 import EmptyFallBack from "../UI/EmptyFallBack";
+import { useLocation } from "react-router-dom";
+import { useReadDirectoryQuery } from "../../api/directoryApi";
+import { useState } from "react";
 
 export default function FileContainer() {
   const location = useLocation();
   const { _id } = location.state || {};
   const { data, isLoading } = useReadDirectoryQuery(_id);
-  // console.log("State", data);
-  // console.log(isLoading);
   const [fileUplaodPoppup, setFileUploadPopup] = useState(false);
   const [createFolderPopup, setCreateFolderPopup] = useState(false);
   const [deletePopup, setDeletePopup] = useState(false);
   const [updateFolderAndFileNamePopup, setUpdateFolderAndFileNamePopup] =
     useState(false);
 
-  // const folderList = () => data?.result.childFolders;
-  // const dataList = () => data?.result.dataFiles;
   const handleDeleteToggle = () => {
     setDeletePopup((pre) => !pre);
   };
@@ -36,12 +31,9 @@ export default function FileContainer() {
     setCreateFolderPopup((pre) => !pre);
   };
   const handleUpdateFolderAndFileNameToggle = () => {
-    // console.log("Woring");
     setUpdateFolderAndFileNamePopup((pre) => !pre);
   };
 
-  // const data = [];
-  // console.log("Route", _id);
   return (
     <div className="relative m-3 mb-18 flex-1 overflow-scroll bg-white md:mb-0">
       <FileControls
@@ -92,7 +84,6 @@ export default function FileContainer() {
           }
         />
       )}
-      {/* <DeleteFileandFolder /> */}
     </div>
   );
 }

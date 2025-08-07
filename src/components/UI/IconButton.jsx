@@ -1,5 +1,4 @@
 import { FaSpinner } from "react-icons/fa6";
-import Spinner from "./Spinner";
 
 export default function IconButton({
   icon,

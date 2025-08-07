@@ -1,16 +1,14 @@
+import FIleAndFolderSpinner from "./FIleAndFolderSpinner";
+import GetFileType from "./GetFileType";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 import { useFetchFileUrlQuery } from "../../api/fileApi";
 import { useState } from "react";
-import FIleAndFolderSpinner from "./FIleAndFolderSpinner";
-import GetFileType from "./GetFileType";
 
 export default function File({ file }) {
   const extension = file.fileName.split(".").pop().toLowerCase();
   const { select, selected, setDisabled } = useBreadcrumbs();
   const [previousSelect, setPreviousSelect] = useState({});
-  // console.log(file.fileDownloadId);
   const { data, isLoading } = useFetchFileUrlQuery(file.fileDownloadId);
-  // console.log(file || null);
 
   const handleClick = () => {
     const fileArr = file.fileName.split(".");
@@ -42,11 +40,9 @@ export default function File({ file }) {
     <div
       className={`relative flex aspect-square w-full cursor-pointer flex-col items-center justify-evenly pt-2 duration-200 ${selected._id === file._id ? "bg-[#f3f3f3] shadow-md shadow-[#d6d6d6]" : "hover:bg-[#f3f3f3]"}`}
       key={file._id}
-      // ref={fileRef}
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
     >
-      {/* <LuFileText className="text-4xl text-[#d0d0d0] md:text-6xl" /> */}
       {isLoading ? (
         <FIleAndFolderSpinner />
       ) : file.fileType.startsWith("image/") ? (

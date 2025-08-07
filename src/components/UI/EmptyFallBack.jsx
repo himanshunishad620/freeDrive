@@ -1,4 +1,3 @@
-import React from "react";
 import { TbMoodEmpty } from "react-icons/tb";
 export default function EmptyFallBack() {
   return (

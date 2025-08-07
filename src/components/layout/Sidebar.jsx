@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { RxDashboard } from "react-icons/rx";
 import { TbFolders } from "react-icons/tb";
@@ -17,14 +16,10 @@ export default function Sidebar() {
         </h1>
         <NavLink
           replace
-          // className="text-md m-3 flex items-center gap-2 bg-red-200 p-4 font-semibold"
           to="./fileManager"
           className={({ isActive }) =>
             `text-md flex w-full items-start justify-center gap-2 p-3 pl-4 font-semibold duration-100 md:justify-start md:pl-15 ${isActive ? "bg-gradient-to-t from-[#037bfc] to-[#8bc3ff] text-white" : ""}`
           }
-          // className={({ isActive }) =>
-          //   isActive ? "font-bold text-blue-500" : "text-gray-500"
-          // }
           state={{ _id }}
         >
           <TbFolders className="text-xl md:text-2xl" />
@@ -32,65 +27,24 @@ export default function Sidebar() {
         </NavLink>
         <NavLink
           replace
-          // className="text-md m-3 flex items-center gap-2 bg-red-200 p-4 font-semibold"
           to="contact"
           className={({ isActive }) =>
             `text-md flex w-full items-start justify-center gap-2 p-3 pl-4 font-semibold duration-100 md:justify-start md:pl-15 ${isActive ? "bg-gradient-to-t from-[#037bfc] to-[#8bc3ff] text-white" : ""}`
           }
-          // className={({ isActive }) =>
-          //   isActive ? "font-bold text-blue-500" : "text-gray-500"
-          // }
-          // state={{ _id }}
         >
           <SiGitconnected className="text-xl md:text-2xl" />
           <span className="hidden md:block"> Contact Us</span>
         </NavLink>
         <NavLink
           replace
-          // className="text-md m-3 flex items-center gap-2 bg-red-200 p-4 font-semibold"
           to="about"
           className={({ isActive }) =>
             `text-md flex w-full items-start justify-center gap-2 p-3 pl-4 font-semibold duration-100 md:justify-start md:pl-15 ${isActive ? "bg-gradient-to-t from-[#037bfc] to-[#8bc3ff] text-white" : ""}`
           }
-          // className={({ isActive }) =>
-          //   isActive ? "font-bold text-blue-500" : "text-gray-500"
-          // }
-          // state={{ _id }}
         >
           <MdOutlineContactSupport className="text-xl md:text-2xl" />
           <span className="hidden md:block"> About Us</span>
         </NavLink>
-
-        {/* <NavLink
-          // className="text-md m-3 flex items-center gap-2 bg-red-200 p-4 font-semibold"
-          to="about"
-          replace
-          className={({ isActive }) =>
-            `text-md mx-3 flex items-center gap-2 p-4 font-semibold duration-100 ${isActive ? "bg-blue-500 text-white" : ""}`
-          }
-          // className={({ isActive }) =>
-          //   isActive ? "font-bold text-blue-500" : "text-gray-500"
-          // }
-          state={{ _id }}
-        >
-          <SiGitconnected className="text-2xl" />
-          <span className="hidden md:block"> Contact Us</span>
-        </NavLink> */}
-        {/* <NavLink
-          // className="text-md m-3 flex items-center gap-2 bg-red-200 p-4 font-semibold"
-          to="contact"
-          replace
-          className={({ isActive }) =>
-            `text-md m-3 flex items-center gap-2 p-4 font-semibold duration-100 ${isActive ? "bg-blue-500 text-white" : ""}`
-          }
-          // className={({ isActive }) =>
-          //   isActive ? "font-bold text-blue-500" : "text-gray-500"
-          // }
-          state={{ _id }}
-        >
-          <TbFolders className="text-2xl" />
-          <span className="hidden md:block">About Us</span>
-        </NavLink> */}
       </nav>
     </div>
   );
