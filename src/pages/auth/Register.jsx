@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import useHandleForm from "../../hooks/useHandleForm";
 import Input from "../../components/UI/Input";
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
 import Button from "../../components/UI/Button";
 import OtpInput from "../../components/UI/OtpInput";
+import { useState } from "react";
+import { HiOutlineMail } from "react-icons/hi";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import useHandleForm from "../../hooks/useHandleForm";
 import { useRegisterMutation, useSendOtpMutation } from "../../api/authApi";
 import { emailRegex } from "../../constant/Regex";
 import { toast } from "react-toastify";
