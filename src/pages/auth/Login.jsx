@@ -15,8 +15,8 @@ export default function Login() {
   const [Login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
   const { value, handleChange } = useHandleForm({
-    email: "ylnfteopltxnwmiaek@nespj.com",
-    password: "Himan@6405",
+    email: "",
+    password: "",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
