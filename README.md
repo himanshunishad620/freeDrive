@@ -33,7 +33,9 @@
 
 ## 📸 Screenshots
 
-![Register Page](./assets/Register.png)
+<!-- ![Register Page](./assets/Register.png) -->
+
+![Register Page](https://raw.githubusercontent.com/himanshunishad620/freeDrive/main/assets/Register.png)
 ![Home Page](./assets/Home.png)
 ![Dashboard Page](./assets/Dashboard.png)
 
