@@ -11,6 +11,7 @@ import {
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { TbShieldShare } from "react-icons/tb";
+import { toast } from "react-toastify";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -19,14 +20,13 @@ const LandingPage = () => {
   const handleLogout = async (e) => {
     setIsLoading(true);
     try {
-      const res = await axios.get(
-        "https://resumakebackend.onrender.com/api/auth/logout",
-        {
-          withCredentials: true,
-        },
-      );
+      await axios.get("https://resumakebackend.onrender.com/api/auth/logout", {
+        withCredentials: true,
+      });
+      toast.success("Logout Successfuly!");
       navigate(0);
     } catch (error) {
+      toast.error("Unable To Logout!");
     } finally {
       setIsLoading(false);
     }

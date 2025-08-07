@@ -18,16 +18,14 @@ export default function Contact() {
     email: "",
     msg: "",
   });
-  console.log(value);
   const [contactUs, { isLoading }] = useContactUsMutation();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await contactUs(value).unwrap();
+      await contactUs(value).unwrap();
       toast.success("Message Sent Successfuly!");
       resetForm();
-      console.log(res);
     } catch (error) {
       toast.error("Internal Server Error!");
     }

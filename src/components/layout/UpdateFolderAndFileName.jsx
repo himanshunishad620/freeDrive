@@ -10,6 +10,7 @@ import {
 } from "../../api/directoryApi";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
 import { LuFilePen } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 export default function UpdateFolderAndFileName({
   handleUpdateFolderAndFileNameToggle,
@@ -25,17 +26,20 @@ export default function UpdateFolderAndFileName({
     folderIdAndFileId: selected._id,
     parentFolderId: _id,
   });
-  console.log(selected);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res =
+    try {
       selected.type === "folder"
         ? await updateFolderName(value)
         : await updateFileName(value);
-    console.log(res);
-    handleUpdateFolderAndFileNameToggle((pre) => !pre);
-    select("");
-    setDisabled(true);
+      select("");
+      setDisabled(true);
+      toast.success("Renamed successfuly!");
+    } catch (error) {
+      toast.error("Something Went Wrong!");
+    } finally {
+      handleUpdateFolderAndFileNameToggle((pre) => !pre);
+    }
   };
   return (
     <div className="fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-black/40">

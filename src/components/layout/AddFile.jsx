@@ -33,7 +33,6 @@ export default function AddFile({ handleAddFileToggle, _id }) {
       handleAddFileToggle(false);
       toast.success("File Uploaded Successfuly!");
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setFileUploadLoading(false);

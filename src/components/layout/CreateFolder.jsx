@@ -5,6 +5,7 @@ import { MdCancel } from "react-icons/md";
 import IconButton from "../UI/IconButton";
 import { useCreateFolderMutation } from "../../api/directoryApi";
 import useHandleForm from "../../hooks/useHandleForm";
+import { toast } from "react-toastify";
 
 export default function CreateFolder({ handleCreateFolderToggle, _id }) {
   const [createFolder, { isLoading }] = useCreateFolderMutation();
@@ -12,11 +13,15 @@ export default function CreateFolder({ handleCreateFolderToggle, _id }) {
     folderName: "",
     parentFolderId: _id,
   });
-  console.log(value);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createFolder(value);
-    handleCreateFolderToggle((pre) => !pre);
+    try {
+      await createFolder(value);
+      toast.success("Folder Created Successfuly!");
+      handleCreateFolderToggle((pre) => !pre);
+    } catch (error) {
+      toast.error("Unable To Create Folder!");
+    }
   };
   return (
     <div className="fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-black/40">

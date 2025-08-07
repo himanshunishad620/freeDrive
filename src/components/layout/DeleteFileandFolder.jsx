@@ -5,6 +5,7 @@ import {
   useDeleteFolderMutation,
 } from "../../api/directoryApi";
 import { useBreadcrumbs } from "../../contexts/BreadcrumbsContext";
+import { toast } from "react-toastify";
 
 export default function DeleteFileandFolder({ handleDeleteToggle, _id }) {
   const { selected, select, setDisabled } = useBreadcrumbs();
@@ -14,7 +15,7 @@ export default function DeleteFileandFolder({ handleDeleteToggle, _id }) {
     useDeleteFolderMutation();
   const handleDelete = async (e) => {
     e.preventDefault();
-    const res =
+    try {
       selected.type === "file"
         ? await deleteFile({
             folderId: _id,
@@ -22,10 +23,14 @@ export default function DeleteFileandFolder({ handleDeleteToggle, _id }) {
             fileSize: selected.fileSize,
           })
         : await deleteFolder({ parentFolderId: _id, _id: selected._id });
-    handleDeleteToggle();
-    select("");
-    setDisabled(true);
-    console.log(res);
+      select("");
+      setDisabled(true);
+      toast.success("Deleted Successfuly!");
+    } catch (error) {
+      toast.error("Unable To Delete!");
+    } finally {
+      handleDeleteToggle();
+    }
   };
   return (
     <div className="fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-black/40">
