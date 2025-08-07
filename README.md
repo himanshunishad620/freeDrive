@@ -33,9 +33,9 @@
 
 ## 📸 Screenshots
 
-<!-- ![Register Page](./assets/Register.png) -->
+<!-- ![Register Page](https://raw.githubusercontent.com/himanshunishad620/freeDrive/main/assets/Register.png) -->
 
-![Register Page](https://raw.githubusercontent.com/himanshunishad620/freeDrive/main/assets/Register.png)
+![Register Page](./assets/Register.png)
 ![Home Page](./assets/Home.png)
 ![Dashboard Page](./assets/Dashboard.png)
 
@@ -46,8 +46,8 @@
 ### 📦 Clone the repository
 
 ```bash
-git clone https://github.com/himanshunishad620/freeDive.git
-cd free-drive
+git clone https://github.com/himanshunishad620/freeDrive.git
+cd freeDrive
 ```
 
 ### 🔧 Install dependencies
