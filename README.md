@@ -55,7 +55,6 @@ cd freeDrive
 #### Frontend
 
 ```bash
-cd client
 npm install
 npm start
 ```
